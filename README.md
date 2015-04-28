@@ -216,7 +216,7 @@
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
 
-    // better (ES6 multiline strings)
+    // better, if ES6 environment or transpiler available (ES6 multiline strings)
     var errorMessage = `This is a super long error that was thrown because
       of Batman. When you stop to think about how Batman had anything to do
       with this, you would get nowhere fast.`;
@@ -225,12 +225,7 @@
   - When programmatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
 
     ```javascript
-    var items;
-    var messages;
-    var length;
-    var i;
-
-    messages = [{
+    var messages = [{
       state: 'success',
       message: 'This one worked.'
     }, {
@@ -241,13 +236,13 @@
       message: 'This one did not work.'
     }];
 
-    length = messages.length;
+    var length = messages.length;
 
     // bad
     function inbox(messages) {
-      items = '<ul>';
+      var items = '<ul>';
 
-      for (i = 0; i < length; i++) {
+      for (var i = 0; i < length; i++) {
         items += '<li>' + messages[i].message + '</li>';
       }
 
@@ -256,9 +251,9 @@
 
     // good
     function inbox(messages) {
-      items = [];
+      var items = [];
 
-      for (i = 0; i < length; i++) {
+      for (var i = 0; i < length; i++) {
         items[i] = '<li>' + messages[i].message + '</li>';
       }
 
@@ -346,8 +341,8 @@
     // good
     var isJedi = luke.jedi;
 
-    // exception: sometimes attributes contain illegal attribute characters like '-'.
-    // In those cases, the subscript notation is a necessity
+    // exception: sometimes attributes contain illegal characters like '-'.
+    // In those cases, the subscript notation is a necessary evil.
     var fontSize = awkwardObject['font-size'];
     ```
 
@@ -388,8 +383,8 @@
 
     ```javascript
     // bad
-    var items = getItems(),
-        goSportsTeam = true,
+    var goSportsTeam = true,
+        items = getItems(),
         dragonball = 'z';
 
     // bad
@@ -399,9 +394,9 @@
         dragonball = 'z';
 
     // good
-    var items = getItems();
-    var goSportsTeam = true;
     var dragonball = 'z';
+    var goSportsTeam = true;
+    var items = getItems();
     ```
 
   - Declare unassigned variables last. This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
@@ -427,8 +422,8 @@
     var i;
     ```
 
-  - Module dependencies go at the top of the file and divided into ordered sections:
-    - Sections ordered by type:
+  - Module dependencies go at the top of the file and ordered as follows:
+    - Depedencies as sections ordered by type:
       - Libraries (lodash, react, etc.)
       - Module type (datastores then components, or business logic then models)
       - Templates last
@@ -483,7 +478,7 @@
     // enforces block scope, preventing you from running this gotcha.
     function(name) {
       if (isNickname(name)) {
-        var fullName = getFull(name);
+        var fullName = getFull(name); // this part is fine
         console.log('valid reference:', fullName);
       }
 
@@ -507,18 +502,16 @@
       console.log(notDefined); // => throws a ReferenceError
     }
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
+    // creating a variable declaration after you reference the variable will work due to
+    // variable hoisting. 
+    // Note: the assignment value of `true` is not hoisted.
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
-  // LINTER ERROR:               ^ 'declaredButNotAssigned' was used before it was defined.
+    // LINTER ERROR:             ^ 'declaredButNotAssigned' was used before it was defined.
     }
 
-    // The interpreter is hoisting the variable
-    // declaration to the top of the scope,
+    // The interpreter is hoisting the variable declaration to the top of the scope,
     // which means our example could be rewritten as:
     function example() {
       var declaredButNotAssigned;
@@ -536,7 +529,7 @@
       anonymous(); // => TypeError anonymous is not a function
 
       var anonymous = function() {
-// LINTER ERROR:    ^ 'anonymous' was used before it was defined.
+    //LINTER ERROR: ^ 'anonymous' was used before it was defined.
         console.log('anonymous function expression');
       };
     }
