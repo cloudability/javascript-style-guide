@@ -1,8 +1,6 @@
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 # DataHero JavaScript Style Guide() {
 
-*A mostly reasonable approach to JavaScript*
+*A Hero's guide to heroic JavaScript*
 
 
 ## Table of Contents
@@ -148,7 +146,7 @@
     someStack.push('abracadabra');
     ```
 
-  - When you need to copy an array use Array#slice. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
+  - When you need to copy an array, use declarative code from lodash
 
     ```javascript
     var len = items.length;
@@ -160,8 +158,11 @@
       itemsCopy[i] = items[i];
     }
 
-    // good
+    // performance trick: use slice http://jsperf.com/converting-arguments-to-an-array/7
     itemsCopy = items.slice();
+
+    // best
+    itemsCopy = _.clone(items); // or _.cloneDeep(), as needed
     ```
 
   - To convert an array-like object to an array, use Array#slice.
@@ -178,14 +179,17 @@
 
 ## Strings
 
-  - Use single quotes `''` for strings.
+  - Use single quotes `''` for strings, unless the string contains single quotes
 
     ```javascript
     // bad
-    var name = "Bob Parr";
+    var name = "Bob Patty";
 
     // good
-    var name = 'Bob Parr';
+    var name = 'Bob Patty';
+
+    // necessity
+    var name = "Bob's Burgers";
 
     // bad
     var fullName = "Bob " + this.lastName;
@@ -194,7 +198,7 @@
     var fullName = 'Bob ' + this.lastName;
     ```
 
-  - Strings longer than 80 characters should be written across multiple lines using string concatenation.
+  - Strings longer than 120 characters should be written across multiple lines using ES6 multi-line strings or regular string concatenation.
   - Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40).
 
     ```javascript
@@ -211,6 +215,11 @@
     var errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
+
+    // better (ES6 multiline strings)
+    var errorMessage = `This is a super long error that was thrown because
+      of Batman. When you stop to think about how Batman had anything to do
+      with this, you would get nowhere fast.`;
     ```
 
   - When programmatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
@@ -266,11 +275,13 @@
 
     ```javascript
     // anonymous function expression
+    // (fine for quick inline functions, but naming your function makes better stack traces)
     var anonymous = function() {
       return true;
     };
 
-    // named function expression
+    // named function expression 
+    // ('named' shows up in your stack traces)
     var named = function named() {
       return true;
     };
@@ -282,7 +293,7 @@
     ```
 
   - Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
-  - **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+    - **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
     ```javascript
     // bad
@@ -334,6 +345,10 @@
 
     // good
     var isJedi = luke.jedi;
+
+    // exception: sometimes attributes contain illegal attribute characters like '-'.
+    // In those cases, the subscript notation is a necessity
+    var fontSize = awkwardObject['font-size'];
     ```
 
   - Use subscript notation `[]` when accessing properties with a variable.
@@ -412,21 +427,36 @@
     var i;
     ```
 
-  - Assign variables at the top of their scope. This helps avoid issues with variable declaration and assignment hoisting related issues.
+  - Module dependencies go at the top of the file and divided into ordered sections:
+    - Sections ordered by type:
+      - Libraries (lodash, react, etc.)
+      - Module type (datastores then components, or business logic then models)
+      - Templates last
+    - Each section is alphabetical
+
+  - Assign variables where they are used, not at the top like in the old days of C.  This makes it easier to read, and the linter enforces block-scope, therefore avoiding common gotchas caused by variable hoisting.
 
     ```javascript
     // bad
     function() {
-      test();
-      console.log('doing stuff..');
+      var name;
+      var age;
+      var classes;
 
-      //..other stuff..
-
-      var name = getName();
+      name = getName();
 
       if (name === 'test') {
         return false;
       }
+
+      age = getAge();
+
+      if (age < 3) {
+        return false;
+      }
+
+      classes = getClasses();
+      ...
 
       return name;
     }
@@ -435,12 +465,13 @@
     function() {
       var name = getName();
 
-      test();
-      console.log('doing stuff..');
-
-      //..other stuff..
-
       if (name === 'test') {
+        return false;
+      }
+
+      var age = getAge();
+
+      if (age < 3) {
         return false;
       }
 
@@ -448,25 +479,17 @@
     }
 
     // bad
-    function() {
-      var name = getName();
-
-      if (!arguments.length) {
-        return false;
+    // normally this would be valid-but-problematic JS because of hoisting, but the linter 
+    // enforces block scope, preventing you from running this gotcha.
+    function(name) {
+      if (isNickname(name)) {
+        var fullName = getFull(name);
+        console.log('valid reference:', fullName);
       }
 
-      return true;
-    }
-
-    // good
-    function() {
-      if (!arguments.length) {
-        return false;
-      }
-
-      var name = getName();
-
-      return true;
+      // valid JS and common hoisting gotcha, but linter blocks and says fullName is being used out of scope:
+      console.log('valid JS but a common hoisting gotcha:', fullName); 
+// LINTER ERROR:                                            ^ 'fullName' used out of scope.
     }
     ```
 
@@ -491,6 +514,7 @@
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
+  // LINTER ERROR:               ^ 'declaredButNotAssigned' was used before it was defined.
     }
 
     // The interpreter is hoisting the variable
@@ -512,6 +536,7 @@
       anonymous(); // => TypeError anonymous is not a function
 
       var anonymous = function() {
+// LINTER ERROR:    ^ 'anonymous' was used before it was defined.
         console.log('anonymous function expression');
       };
     }
