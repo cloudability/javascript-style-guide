@@ -1,11 +1,8 @@
-# DataHero (Airbnb) JavaScript Style Guide() {
+# Cloudability JavaScript Style Guide() {
 
-*A Hero's guide to heroic JavaScript*
+*Heroic JavaScript for a cloudy day*
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-[For the ES5-only guide click here](es5/).
+Based off the [airbnb javascript style guide](https://github.com/airbnb/javascript).
 
 ## Table of Contents
 
@@ -300,7 +297,7 @@
     ```
 
   <a name="es6-array-spreads"></a>
-  - [4.3](#4.3) <a name='4.3'></a> Use array spreads `...` to copy arrays.
+  - [4.3](#4.3) <a name='4.3'></a> (*Requires Babel) Use array spreads `...` to copy arrays.
 
     ```javascript
     // bad
@@ -315,7 +312,7 @@
     // performance trick: use slice http://jsperf.com/converting-arguments-to-an-array/7
     itemsCopy = items.slice();
 
-    // best
+    // best (declarative)
     itemsCopy = _.clone(items); // or _.cloneDeep(), as needed
 
     // good
@@ -333,7 +330,7 @@
 
 ## Destructuring
 
-  - [5.1](#5.1) <a name='5.1'></a> Use object destructuring when accessing and using multiple properties of an object.
+  - [5.1](#5.1) <a name='5.1'></a> (*Requires Babel) Use object destructuring when accessing and using multiple properties of an object.
 
   > Why? Destructuring saves you from creating temporary references for those properties.
 
@@ -358,7 +355,7 @@
     }
     ```
 
-  - [5.2](#5.2) <a name='5.2'></a> Use array destructuring.
+  - [5.2](#5.2) <a name='5.2'></a> (*Requires Babel) Use array destructuring.
 
     ```javascript
     const arr = [1, 2, 3, 4];
@@ -371,7 +368,7 @@
     const [first, second] = arr;
     ```
 
-  - [5.3](#5.3) <a name='5.3'></a> Use object destructuring for multiple return values, not array destructuring.
+  - [5.3](#5.3) <a name='5.3'></a> (*Requires Babel) Use object destructuring for multiple return values, not array destructuring.
 
   > Why? You can add new properties over time or change the order of things without breaking call sites.
 
@@ -400,7 +397,7 @@
 
 ## Strings
 
-  - [6.1](#6.1) <a name='6.1'></a> Use single quotes `''` for strings.
+  - [6.1](#6.1) <a name='6.1'></a> Use single quotes `''` for strings, unless string contains single quotes.
 
     ```javascript
     // bad
@@ -408,6 +405,9 @@
 
     // good
     const name = 'Capt. Janeway';
+    
+    // plan b
+    const name = "Capt'n Crunch";
     ```
 
   - [6.2](#6.2) <a name='6.2'></a> Strings longer than 120 characters should be written across multiple lines using ES6 multi-line strings or regular string concatenation.
@@ -629,6 +629,9 @@
     [1, 2, 3].map((x) => {
       return x * x;
     });
+    
+    // best
+    [1, 2, 3].map(x => x * x);
     ```
 
   - [8.2](#8.2) <a name='8.2'></a> If the function body fits on one line and there is only a single argument, feel free to omit the braces and parentheses, and use the implicit return. Otherwise, add the parentheses, braces, and use a `return` statement.
@@ -837,6 +840,9 @@
     const sum = numbers.reduce((total, num) => total + num, 0);
     sum === 15;
     ```
+    
+    > Note that lodash can make working with functional operators easier.  For example, `Array.forEach()` returns 
+    > `undefined`, while lodash has chaining mechanisms (eg `_(aList).forEach(...).map(...).reduce(...);`)
 
   - [11.2](#11.2) <a name='11.2'></a> Don't use generators for now.
 
@@ -898,7 +904,7 @@
 
   - [13.2](#13.2) <a name='13.2'></a> Use one `const` declaration per variable.
 
-    > Why? It's easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs.
+    > Why? It's easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. Also, "No hipster shit."
 
     ```javascript
     // bad
@@ -918,46 +924,36 @@
     var items = getItems();
     ```
 
-  - [13.3](#13.3) <a name='13.3'></a> Group all your `const`s and then group all your `let`s.
-
-  > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+  - [13.3](#13.3) <a name='13.3'></a> Ordering: Library imports, module imports, variable declarations. Alphabetize each by variable name.
+  
+  > Why? Lets you understand a file's dependencies quickly and at a glance.
 
     ```javascript
     // bad
-    let i, len, dragonball,
-        items = getItems(),
-        goSportsTeam = true;
-
-    // bad
-    let i;
+    import MyModel from 'models/MyModel';
+    import _ from lodash;
+    const TAU = Math.PI * 2;
     const items = getItems();
-    let dragonball;
-    const goSportsTeam = true;
-    let len;
+    import async from async;
+
 
     // good
-    const goSportsTeam = true;
+    import _ from lodash;
+    import async from async;
+    
+    import MyModel from 'models/MyModel';
+    
+    const TAU = Math.PI * 2;
+    
     const items = getItems();
-    let dragonball;
-    let i;
-    let length;
     ```
 
-  - Module dependencies go at the top of the file and ordered as follows:
-    - Depedencies as sections ordered by type:
-      - Libraries (lodash, react, etc.)
-      - Module type (datastores then components, or business logic then models)
-      - Templates last
-    - Each section is alphabetical
+  - [13.4](#13.4) <a name='13.4'></a> Assign variables where they are used, not at the top like in the old days of C.
 
-  - Assign variables where they are used, not at the top like in the old days of C.  This makes it easier to read, and the linter enforces block-scope, therefore avoiding common gotchas caused by variable hoisting.
-
-  - [13.4](#13.4) <a name='13.4'></a> Assign variables where you need them, but place them in a reasonable place.
-
-  > Why? `let` and `const` are block scoped and not function scoped.
+  > Why? This makes it easier to read (no separation between declaration and definition). The linter enforces block-scope, therefore avoiding common gotchas caused by variable hoisting.
 
     ```javascript
-    // good
+    // bad
     function() {
       var name;
       var age;
@@ -965,7 +961,7 @@
 
       //..other stuff..
 
-      const name = getName();
+      name = getName();
 
       if (name === 'test') {
         return false;
@@ -978,6 +974,27 @@
       }
 
       classes = getClasses();
+      ...
+
+      return name;
+    }
+    
+    
+    // good
+    function() {
+      const name = getName();
+
+      if (name === 'test') {
+        return false;
+      }
+
+      const age = getAge();
+
+      if (age < 3) {
+        return false;
+      }
+
+      const classes = getClasses();
       ...
 
       return name;
@@ -996,18 +1013,9 @@
       // valid JS and common hoisting gotcha, but linter blocks and says fullName is being used out of scope:
       console.log('valid JS but a common hoisting gotcha:', fullName); 
 // LINTER ERROR:                                            ^ 'fullName' used out of scope.
-    // good
-    function(hasName) {
-      if (!hasName) {
-        return false;
-      }
 
-      const name = getName();
-      this.setFirstName(name);
-
-      return true;
-    }
-    ```
+    // but you should be using `let` anyways to avoid this in the first place
+```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1127,7 +1135,7 @@
     }
     ```
 
-  - [15.3](#15.3) <a name='15.3'></a> Use shortcuts.
+  - [15.3](#15.3) <a name='15.3'></a> Use truthiness shortcuts.
 
     ```javascript
     // bad
@@ -1151,34 +1159,35 @@
     }
     ```
 
-  - [15.4](#15.4) <a name='15.4'></a> For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
+  - [15.4](#15.4) <a name='15.4'></a> For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll or the [javascript wat](https://www.destroyallsoftware.com/talks/wat) talk.
 
 **[⬆ back to top](#table-of-contents)**
 
 
 ## Blocks
 
-  - [16.1](#16.1) <a name='16.1'></a> Use braces with all multi-line blocks.
+  - [16.1](#16.1) <a name='16.1'></a> Use braces with all multi-line blocks, except for one line guard-clauses.
 
     ```javascript
-    // bad
+    // bad -- avoid inline if's
+    if (test) return false;
+        
+    // good -- ONLY for guard clauses (if/return checks)
     if (test)
       return false;
-
-    // good
-    if (test) return false;
+      
+    // bad -- not a true a one-line guard clause
+    if (test)
+      return new Error('Some very long an very description string about how the quick brown fox jumped ' +
+        'over the lazy dog');
+      
+    // bad -- not a guard clause, use braces
+    if (test)
+      doSomething();
 
     // good
     if (test) {
-      return false;
-    }
-
-    // bad
-    function() { return false; }
-
-    // good
-    function() {
-      return false;
+      doSomething();
     }
     ```
 
@@ -1195,6 +1204,7 @@
       thing3();
     }
 
+
     // good
     if (test) {
       thing1();
@@ -1210,7 +1220,7 @@
 
 ## Comments
 
-  - [17.1](#17.1) <a name='17.1'></a> Use `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.
+  - [17.1](#17.1) <a name='17.1'></a> Use jsdoc `/** ... */` for multi-line comments. Include a description, specify types and values for all parameters and return values.  Note that jsdocs has two asterisks on the opening block: `/**`, not `/*`
 
     ```javascript
     // bad
@@ -1510,7 +1520,7 @@
 
 ## Commas
 
-  - [19.1](#19.1) <a name='19.1'></a> Leading commas: **Nope.**
+  - [19.1](#19.1) <a name='19.1'></a> Leading commas: **Nope. No hipster shit.**
 
     ```javascript
     // bad
@@ -1544,7 +1554,7 @@
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **Yup.**
+  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: Yup.
 
   > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
 
@@ -1607,7 +1617,7 @@
       return name;
     })();
 
-    // good (guards against the function becoming an argument when two files with IIFEs are concatenated)
+    // good (guards against the function becoming an argument when two files with IIFEs are concatenated, but likely unnecessary with proper build tools)
     ;(() => {
       const name = 'Skywalker';
       return name;
@@ -1689,7 +1699,7 @@
     // good
     const hasAge = Boolean(age);
 
-    // good
+    // better
     const hasAge = !!age;
     ```
 
@@ -1748,6 +1758,14 @@
       name: 'yup',
     });
     ```
+  
+  - Use ALL_CAPS when naming immutable or tunable variables
+  
+  ```javascript
+  const TAU = Math.Pi * 2;
+  const SECRET_TO_LIFE = 42;
+  const PORT = 8080;
+  ```
 
   - [22.4](#22.4) <a name='22.4'></a> Use a leading underscore `_` when naming private properties.
 
@@ -1760,17 +1778,9 @@
     this._firstName = 'Panda';
     ```
 
-  - [22.5](#22.5) <a name='22.5'></a> Don't save references to `this`. Use arrow functions or Function#bind.
+  - [22.5](#22.5) <a name='22.5'></a> Prefer don't save references to `this` (use `self` if absolutely necessary). Use arrow functions or Function#bind.
 
     ```javascript
-    // bad
-    function foo() {
-      const self = this;
-      return function() {
-        console.log(self);
-      };
-    }
-
     // bad
     function foo() {
       const that = this;
@@ -1778,7 +1788,22 @@
         console.log(that);
       };
     }
+    
+    // discouraged unless javascript hoops require it
+    function foo() {
+      const self = this;
+      return function() {
+        console.log(self);
+      };
+    }
 
+    // good
+    function foo() {
+      return function() {
+        console.log(this);
+      }.bind(this);
+    }
+    
     // good
     function foo() {
       return () => {
