@@ -68,8 +68,8 @@
     'one-var': 0,
     // We do not gain anything from multiline arrow functions
     'prefer-arrow-callback': 0,
-    // Allow developers to use their discretion on let vs const
-    'prefer-const': 0,
+    // Use our modded prefer-const rule so that we only enforce the rule in topmost scope
+    'prefer-const': [2, 'top-scope'],
     // Make string concatentation a warning instead
     'prefer-template': 1,
     'require-yield': 2,
