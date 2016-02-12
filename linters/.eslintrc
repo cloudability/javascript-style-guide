@@ -70,8 +70,6 @@
     'prefer-arrow-callback': 0,
     // Use our modded prefer-const rule so that we only enforce the rule in topmost scope
     'prefer-const': [2, 'top-scope'],
-    // Make string concatentation a warning instead
-    'prefer-template': 1,
     'require-yield': 2,
     // We do not like space before the first parenthesis in function decl
     'space-before-function-paren': [2, 'never'],
