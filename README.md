@@ -666,8 +666,8 @@ Other Style Guides
 
     // bad
     function f2(a) {
-      if (!a) { 
-        a = 1; 
+      if (!a) {
+        a = 1;
       }
     }
 
@@ -1645,7 +1645,7 @@ Other Style Guides
     return arr;
     ```
 
-  - [18.8](#18.8) <a name='18.8'></a> Do not pad your blocks with blank lines. eslint: [`padded-blocks`](http://eslint.org/docs/rules/padded-blocks.html) jscs:  [`disallowPaddingNewlinesInBlocks`](http://jscs.info/rule/disallowPaddingNewlinesInBlocks)
+  - [18.8](#18.8) <a name='18.8'></a> Cloudability allows developers to add padding in blocks whenever white space would help readability.
 
     ```javascript
     // bad
@@ -1656,12 +1656,12 @@ Other Style Guides
     }
 
     // also bad
-    if (baz) {
-
-      console.log(qux);
-    } else {
-      console.log(foo);
-
+    if (error instanceof FooError) {
+      error.statusCode = 500;
+      error.i18nKey = 'OhNoes';
+      return next(error);
+    } else if (error) {
+      return next(error);
     }
 
     // good
@@ -1670,10 +1670,13 @@ Other Style Guides
     }
 
     // good
-    if (baz) {
-      console.log(qux);
-    } else {
-      console.log(foo);
+    if (error instanceof FooError) {
+      error.statusCode = 500;
+      error.i18nKey = 'OhNoes';
+      return next(error);
+
+    } else if (error) {
+      return next(error);
     }
     ```
 
