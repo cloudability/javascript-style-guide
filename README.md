@@ -676,7 +676,7 @@ Other Style Guides
       const opts = opts || {};
     }
 
-    // good: use trailling underscore convention
+    // good: use trailing underscore convention
     function f3(opts_) {
       const opts = opts_ || {};
     }
