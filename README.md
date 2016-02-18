@@ -664,12 +664,14 @@ Other Style Guides
       a = 1;
     }
 
+    // bad
     function f2(a) {
       if (!a) { 
         a = 1; 
       }
     }
 
+    // bad
     function f3(opts) {
       const opts = opts || {};
     }
