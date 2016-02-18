@@ -681,7 +681,7 @@ Other Style Guides
       const opts = opts_ || {};
     }
 
-    // Babel-only, not supported in V8
+    // good, but Babel-only, not supported in V8
     function f4(opts = {}) {
     }
     ```
