@@ -537,7 +537,7 @@ Other Style Guides
     ```
 
   <a name="es6-rest"></a>
-  - [7.6](#7.6) <a name='7.6'></a> Never use `arguments`, opt to use rest syntax `...` instead.
+  - [7.6](#7.6) <a name='7.6'></a> *\[Babel-only, not supported in V8\]* Never use `arguments`, opt to use rest syntax `...` instead.
 
     > Why? `...` is explicit about which arguments you want pulled. Plus rest arguments are a real Array and not Array-like like `arguments`.
 
@@ -555,7 +555,7 @@ Other Style Guides
     ```
 
   <a name="es6-default-parameters"></a>
-  - [7.7](#7.7) <a name='7.7'></a> Use default parameter syntax rather than mutating function arguments.
+  - [7.7](#7.7) <a name='7.7'></a> *\[Babel-only, not supported in V8\]* Use default parameter syntax rather than mutating function arguments.
 
     ```javascript
     // really bad
@@ -597,7 +597,7 @@ Other Style Guides
     count();  // 3
     ```
 
-  - [7.9](#7.9) <a name='7.9'></a> Always put default parameters last.
+  - [7.9](#7.9) <a name='7.9'></a> *\[Babel-only, not supported in V8\]* Always put default parameters last.
 
     ```javascript
     // bad
@@ -656,7 +656,7 @@ Other Style Guides
 
   - [7.13](#7.13) <a name="7.13"></a> Never reassign parameters. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
 
-    > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause optimization issues, especially in V8.
+    > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause [optimization issues, especially in V8](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#31-reassigning-a-defined-parameter-while-also-mentioning-arguments-in-the-body-in-sloppy-mode-only-typical-example).
 
     ```javascript
     // bad
@@ -665,15 +665,22 @@ Other Style Guides
     }
 
     function f2(a) {
-      if (!a) { a = 1; }
+      if (!a) { 
+        a = 1; 
+      }
     }
 
-    // good
-    function f3(a) {
-      const b = a || 1;
+    function f3(opts) {
+      const opts = opts || {};
     }
 
-    function f4(a = 1) {
+    // good: use trailling underscore convention
+    function f3(opts_) {
+      const opts = opts_ || {};
+    }
+
+    // Babel-only, not supported in V8
+    function f4(opts = {}) {
     }
     ```
 
