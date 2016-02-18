@@ -681,6 +681,11 @@ Other Style Guides
       const opts = opts_ || {};
     }
 
+    // good
+    function f2(a_) {
+      const a = a_ === undefined ? 1 : a_; // beware 0/truthiness
+    }
+
     // good, but Babel-only, not supported in V8
     function f4(opts = {}) {
     }
