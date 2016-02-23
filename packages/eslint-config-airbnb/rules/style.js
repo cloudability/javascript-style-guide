@@ -31,6 +31,16 @@ module.exports = {
     'jsx-quotes': [2, 'prefer-double'],
     // enforces spacing between keys and values in object literal properties
     'key-spacing': [2, { 'beforeColon': false, 'afterColon': true }],
+    // require a space before & after certain keywords
+    'keyword-spacing': [2, {
+      'before': true,
+      'after': true,
+      'overrides': {
+        'return': { 'after': true },
+        'throw': { 'after': true },
+        'case': { 'after': true }
+      }
+    }],
     // enforces empty lines around comments
     'lines-around-comment': 0,
     // disallow mixed 'LF' and 'CRLF' as linebreaks
@@ -49,6 +59,10 @@ module.exports = {
     'new-parens': 0,
     // allow/disallow an empty newline after var statement
     'newline-after-var': 0,
+    // enforces new line after each method call in the chain to make it
+    // more readable and easy to maintain
+    // http://eslint.org/docs/rules/newline-per-chained-call
+    'newline-per-chained-call': [0, { 'ignoreChainWithDepth': 3 }],
     // disallow use of the Array constructor
     'no-array-constructor': 0,
     // disallow use of the continue statement
@@ -74,11 +88,19 @@ module.exports = {
     // disallow dangling underscores in identifiers
     'no-underscore-dangle': 0,
     // disallow the use of Boolean literals in conditional expressions
-    'no-unneeded-ternary': 0,
+    // also, prefer `a || b` over `a ? a : b`
+    // http://eslint.org/docs/rules/no-unneeded-ternary
+    'no-unneeded-ternary': [2, { 'defaultAssignment': false }],
+    // disallow whitespace before properties
+    // http://eslint.org/docs/rules/no-whitespace-before-property
+    'no-whitespace-before-property': 2,
     // require padding inside curly braces
     'object-curly-spacing': [2, 'always'],
     // allow just one var statement per function
     'one-var': [2, 'never'],
+    // require a newline around variable declaration
+    // http://eslint.org/docs/rules/one-var-declaration-per-line
+    'one-var-declaration-per-line': [2, 'always'],
     // require assignment operator shorthand where possible or prohibit it entirely
     'operator-assignment': 0,
     // enforce operators to be placed before or after line breaks
@@ -98,10 +120,6 @@ module.exports = {
     'semi': [2, 'always'],
     // sort variables within the same declaration block
     'sort-vars': 0,
-    // require a space before certain keywords
-    'space-before-keywords': [2, 'always'],
-    // require a space after certain keywords
-    'space-after-keywords': [2, 'always'],
     // require or disallow space before blocks
     'space-before-blocks': 2,
     // require or disallow space before function opening parenthesis
@@ -111,8 +129,6 @@ module.exports = {
     'space-in-parens': [2, 'never'],
     // require spaces around operators
     'space-infix-ops': 2,
-    // require a space after return, throw, and case
-    'space-return-throw-case': 2,
     // Require or disallow spaces before/after unary operators
     'space-unary-ops': 0,
     // require or disallow a space immediately following the // or /* in a comment
