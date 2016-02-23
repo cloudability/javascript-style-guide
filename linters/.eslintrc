@@ -13,20 +13,22 @@
     'require': false
   },
   'env': {
-    'node': true,
-    'es6': true
+    'node': true
   },
-  'ecmaFeatures': {
-    // Disable features might not work in Node 4.x
-    'defaultParams': false,
-    'destructuring': false,
-    'jsx': false,
-    'objectLiteralDuplicateProperties': false,
-    'restParams': false,
-    'spread': false,
+  'parserOptions': {
+    'sourceType': 'script',
+    'ecmaFeatures': {
+      // Disable features might not work in Node 4.x
+      'defaultParams': false,
+      'destructuring': false,
+      'jsx': false,
+      'objectLiteralDuplicateProperties': false,
+      'restParams': false,
+      'spread': false,
 
-    // Allow to check for `use strict` even in files with .exports
-    'modules': false
+      // Allow to check for `use strict` even in files with .exports
+      'modules': false
+    }
   },
   'rules': {
     /*
@@ -36,6 +38,9 @@
      */
     // Only enforce dangling commas on arrays/obj spanning multiple lines
     'comma-dangle': [2, 'always-multiline'],
+    'callback-return': 2,
+    // The consistency checks do not match our early-returns + normal callback coding style
+    'consistent-return': 0,
     'constructor-super': 2,
     // eslint's rules for this does not yet match our early-return pattern
     'curly': 0,
@@ -43,9 +48,9 @@
     'func-names': 0,
     // Enforces how MDN writes their generators
     'generator-star-spacing': [2, {'before': false, 'after': true}],
+    'handle-callback-err': [2, '^(err|.*(e|E)rror)'],
     'lines-around-comment': [2, {'beforeBlockComment': true, 'beforeLineComment': true,
                                  'allowBlockStart': true, 'allowObjectStart': true}],
-    'no-arrow-condition': 2,
     'no-class-assign': 2,
     'no-dupe-class-members': 2,
     // Allow multiple spaces only in certain situations involving aligned white spaces
@@ -64,14 +69,14 @@
     'no-param-reassign': [2, { 'props': false }],
     // Only enforce shorthand on properties because doing so on methods produces weird behavior with anonymous fn
     'object-shorthand': [2, 'properties'],
-    // We put var declarations where it is being used
-    'one-var': 0,
     // We allow developers to add padded blocks if they aid readability
     'padded-blocks': 0,
     // We do not gain anything from multiline arrow functions
     'prefer-arrow-callback': 0,
     // Use our modded prefer-const rule so that we only enforce the rule in topmost scope
     'prefer-const': [2, 'top-scope'],
+    // Cannot use rest params until backend moves to Node 5+
+    'prefer-rest-params': 0,
     'require-yield': 2,
     // We do not like space before the first parenthesis in function decl
     'space-before-function-paren': [2, 'never'],
@@ -101,7 +106,6 @@
     'no-unneeded-ternary': 2,
     'object-curly-spacing': [2, 'always'],
     'operator-linebreak': [2, 'after'],
-    'space-after-keywords': [2, 'always'],
     'space-unary-ops': [2, { 'words': true, 'nonwords': false }],
 
     // Stuff taken & adapted from Datahero's unfinished eslint
