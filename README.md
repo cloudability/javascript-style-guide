@@ -1,11 +1,17 @@
 # Cloudability JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
-
 Based off the [airbnb javascript style guide](https://github.com/airbnb/javascript).
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Add Cloudability's JS linting rules to your javascript project with these steps
+ - `npm install --save-dev cloudability/javascript-style-guide`
+ - `npm install --save-dev eslint@2.4.0`
+ - `npm install --save-dev eslint@6.1.0`
+ - `ln -sfi node_modules/cloudability-style/linters/.eslintrc .eslintrc`
+
+It's recommended to add at least the following two lines to your `.eslintignore`
+ - `**/node_modules/`
+ - `*.min.js`
 
 Other Style Guides
  - [ES5](es5/)
