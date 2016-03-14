@@ -6,7 +6,7 @@ Based off the [airbnb javascript style guide](https://github.com/airbnb/javascri
 Add Cloudability's JS linting rules to your javascript project with these steps
  - `npm install --save-dev cloudability/javascript-style-guide`
  - `npm install --save-dev eslint@2.4.0`
- - `npm install --save-dev eslint@6.1.0`
+ - `npm install --save-dev eslint-config-airbnb@6.1.0`
  - `ln -sfi node_modules/cloudability-style/linters/.eslintrc .eslintrc`
 
 It's recommended to add at least the following two lines to your `.eslintignore`
