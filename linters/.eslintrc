@@ -1,6 +1,6 @@
 {
   'parser': 'espree',
-  'extends': 'airbnb/base',
+  'extends': 'airbnb-base',
   'globals': {
     // Simply including a var here defines it as a `global`
     // Setting it to false means that the var cannot be resassigned in user code
@@ -67,6 +67,8 @@
     'no-this-before-super': 2,
     // We directly modify the `req` parameter in routing middleware
     'no-param-reassign': [2, { 'props': false }],
+    // We use dangling underscores to mark certain types of variables
+    'no-underscore-dangle': 0,
     // Only enforce shorthand on properties because doing so on methods produces weird behavior with anonymous fn
     'object-shorthand': [2, 'properties'],
     // We allow developers to add padded blocks if they aid readability
@@ -82,6 +84,9 @@
     'strict': [2, 'global'],
     // AirBnB suggests this, but we have not done this and do not want(?) to
     'vars-on-top': 0,
+
+    // eslint cannot yet use custom NODE_PATHs so turn off `commonJS` checking
+    'import/no-unresolved': [2, 'commonjs': false],
 
     /*
      *
