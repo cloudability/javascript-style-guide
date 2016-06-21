@@ -83,6 +83,14 @@ module.exports = {
       ignoreComments: false
     }],
 
+    // specify the max number of lines in a file
+    // http://eslint.org/docs/rules/max-lines
+    'max-lines': [0, {
+      max: 300,
+      skipBlankLines: true,
+      skipComments: true
+    }],
+
     // specify the maximum depth callbacks can be nested
     'max-nested-callbacks': 0,
 
@@ -127,6 +135,19 @@ module.exports = {
 
     // disallow if as the only statement in an else block
     'no-lonely-if': 0,
+
+    // disallow un-paren'd mixes of different operators
+    // http://eslint.org/docs/rules/no-mixed-operators
+    'no-mixed-operators': [2, {
+      groups: [
+        ['+', '-', '*', '/', '%', '**'],
+        ['&', '|', '^', '~', '<<', '>>', '>>>'],
+        ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
+        ['&&', '||'],
+        ['in', 'instanceof']
+      ],
+      allowSamePrecedence: false
+    }],
 
     // disallow mixed spaces and tabs for indentation
     'no-mixed-spaces-and-tabs': 2,
@@ -181,10 +202,17 @@ module.exports = {
     // require padding inside curly braces
     'object-curly-spacing': [2, 'always'],
 
+    // enforce line breaks between braces
+    // http://eslint.org/docs/rules/object-curly-newline
+    // TODO: enable once https://github.com/eslint/eslint/issues/6488 is resolved
+    'object-curly-newline': [0, {
+      ObjectExpression: { minProperties: 0, multiline: true },
+      ObjectPattern: { minProperties: 0, multiline: true }
+    }],
+
     // enforce "same line" or "multiple line" on object properties.
     // http://eslint.org/docs/rules/object-property-newline
-    // TODO: enable when https://github.com/eslint/eslint/issues/5667#issuecomment-219334864 is resolved
-    'object-property-newline': [0, {
+    'object-property-newline': [2, {
       allowMultiplePropertiesPerLine: true,
     }],
 

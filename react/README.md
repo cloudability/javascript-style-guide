@@ -291,12 +291,12 @@
   )}
 
   // good
-  {todos.map((todo) =>
+  {todos.map(todo => (
     <Todo
       {...todo}
       key={todo.id}
     />
-  )}
+  ))}
   ```
 
 ## Parentheses
@@ -530,5 +530,7 @@
   This JSX/React style guide is also available in other languages:
 
   - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [JasonBoy/javascript](https://github.com/JasonBoy/javascript/tree/master/react)
+  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [pietraszekl/javascript](https://github.com/pietraszekl/javascript/tree/master/react)
+  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [apple77y/javascript](https://github.com/apple77y/javascript/tree/master/react)
 
 **[⬆ back to top](#table-of-contents)**
