@@ -3,16 +3,17 @@
 *A mostly reasonable approach to JavaScript*
 Based off the [airbnb javascript style guide](https://github.com/airbnb/javascript).
 
-Add Cloudability's JS linting rules to your javascript project with these steps
- - `npm i --save-dev eslint@2 eslint-config-airbnb@9 eslint-plugin-react@5`
- - `npm i --save-dev eslint-plugin-import eslint-plugin-jsx-a11y`
- - `npm i --save-dev cloudability/javascript-style-guide#gui_react`
- - `ln -sfi node_modules/cloudability-style/linters/.eslintrc ./.eslintrc`
- - `ln -sfi node_modules/cloudability-style/linters/.eslintignore ./.eslintignore`
+Add Cloudability's JS/X linting rules to your javascript project with these steps:
+
+```
+  npm i --save-dev eslint@2 eslint-config-airbnb@9 eslint-plugin-react@5 babel-eslint@6 \
+                   eslint-plugin-import eslint-plugin-jsx-a11y \
+                   cloudability/javascript-style-guide#gui_react
+
+  ln -sfi node_modules/cloudability-style/linters/.eslintrc ./.eslintrc
+```
 
 Other Style Guides
- - [ES5](es5/)
- - [React](react/)
  - [CSS & Sass](https://github.com/airbnb/css)
  - [Ruby](https://github.com/airbnb/ruby)
 
