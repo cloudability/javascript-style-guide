@@ -2,10 +2,12 @@
   'parser': 'babel-eslint',
   'extends': 'airbnb',
   'globals': {
+    '$': false,
     '_': false,
     '__dirname': false,
     'arguments': false,
     'Backbone': false,
+    'cui': false,
     'describe': false,
     'expect': false,
     'exports': false,
@@ -78,7 +80,11 @@
     // We do not like space before the first parenthesis in function decl
     'space-before-function-paren': [2, 'never'],
     'spaced-comment': [2, 'always', { 'markers': ['/', '*', 'global'] }],
-    'strict': [2, 'global'],
+    // With modules, `use-strict` is superfluous but we have a mixed building system
+    'strict': 0,
+
+    // This seems to be current issue with this https://github.com/benmosher/eslint-plugin-import/issues/352
+    'import/no-unresolved': 0,
 
     /*
      *
