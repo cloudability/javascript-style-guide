@@ -6,9 +6,9 @@ Based off the [airbnb javascript style guide](https://github.com/airbnb/javascri
 Add Cloudability's JS/X linting rules to your javascript project with these steps:
 
 ```
-  npm i --save-dev eslint@2 eslint-config-airbnb@9 eslint-plugin-react@5 babel-eslint@6 \
+  npm i --save-dev eslint@3 eslint-config-airbnb@9 eslint-plugin-react@5 babel-eslint@6 \
                    eslint-plugin-import eslint-plugin-jsx-a11y \
-                   cloudability/javascript-style-guide#gui_react
+                   cloudability/javascript-style-guide
 
   ln -sfi node_modules/cloudability-style/linters/.eslintrc ./.eslintrc
 ```
