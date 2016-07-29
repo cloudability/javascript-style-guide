@@ -35,7 +35,6 @@
     'callback-return': 2,
     // The consistency checks do not match our early-returns + normal callback coding style
     'consistent-return': 0,
-    'constructor-super': 2,
     // eslint's rules for this does not yet match our early-return pattern
     'curly': 0,
     // Functions can be anonymous when used as an argument
@@ -59,7 +58,6 @@
     }],
     // Do not allow shadowed functions except in cases of extremely common parameter names
     'no-shadow': [2, { 'allow': ['callback', 'cb', 'done', 'err', 'error', 'next', 'req', 'res'] }],
-    'no-this-before-super': 2,
     // We directly modify the `req` parameter in routing middleware
     'no-param-reassign': [2, { 'props': false }],
     // Currently a standard usage in GUI js
@@ -72,11 +70,8 @@
     'padded-blocks': 0,
     // We do not gain anything from multiline arrow functions
     'prefer-arrow-callback': 0,
-    // Use our modded prefer-const rule so that we only enforce the rule in topmost scope
-    'prefer-const': 2,
     // Benefit of string templates is not worth all the white noise of current GUI infractions
     'prefer-template': 0,
-    'require-yield': 2,
     // We do not like space before the first parenthesis in function decl
     'space-before-function-paren': [2, 'never'],
     'spaced-comment': [2, 'always', { 'markers': ['/', '*', 'global'] }],
@@ -99,26 +94,19 @@
     // eslint's options for multiline key-spacing is not yet fine-grained enough to turn on the check
     'key-spacing': 0,
     'new-cap': [2, {'capIsNew': false}],
-    'new-parens': 2,
     'no-array-constructor': 2,
-    'no-continue': 2,
-    'no-lonely-if': 2,
     'no-multiple-empty-lines': [2, { 'max': 2 }],
     'no-unneeded-ternary': 2,
     'object-curly-spacing': [2, 'always'],
     'operator-linebreak': [2, 'after'],
-    'space-unary-ops': [2, { 'words': true, 'nonwords': false }],
 
     // Stuff taken & adapted from Datahero's unfinished eslint
     'no-alert': 2,
     'no-bitwise': 2,
     'no-constant-condition': 2,
     'no-debugger': 2,
-    'no-extra-boolean-cast': 2,
     'no-implied-eval': 2,
-    'no-label-var': 2,
     'no-process-exit': 2,
-    'no-undef-init': 2,
     'no-unused-vars': [2, {'vars': 'all', 'args': 'after-used',
                            'argsIgnorePattern': 'callback|done|next',
                            'varsIgnorePattern': '_|colors'}],
