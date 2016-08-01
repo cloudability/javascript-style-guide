@@ -14,6 +14,8 @@ Add Cloudability's JS/X linting rules to your javascript project with these step
 ```
 
 Other Style Guides
+ - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
+ - [React](react/)
  - [CSS & Sass](https://github.com/airbnb/css)
  - [Ruby](https://github.com/airbnb/ruby)
 

@@ -9,9 +9,6 @@ const cli = new CLIEngine({
   baseConfig: eslintrc,
 
   rules: {
-    // This rule fails when executing on text.
-    indent: 0,
-
     // It is okay to import devDependencies in tests.
     'import/no-extraneous-dependencies': [2, { devDependencies: true }],
   },
@@ -27,6 +24,7 @@ function lint(text) {
 function wrapComponent(body) {
   return `
 import React from 'react';
+
 export default class MyComponent extends React.Component {
 /* eslint no-empty-function: 0 */
 ${body}

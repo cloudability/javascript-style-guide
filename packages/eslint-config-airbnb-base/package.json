@@ -1,12 +1,12 @@
 {
   "name": "eslint-config-airbnb-base",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Airbnb's base JS ESLint config, following our styleguide",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "tests-only": "babel-tape-runner ./test/test-*.js",
-    "prepublish": "not-in-publish || (eslint-find-rules --unused && npm test)",
+    "prepublish": "(in-install || eslint-find-rules --unused) && (not-in-publish || npm test) && safe-publish-latest",
     "pretest": "npm run --silent lint",
     "test": "npm run --silent tests-only",
     "travis": "npm run --silent test"
@@ -47,15 +47,16 @@
   "devDependencies": {
     "babel-preset-airbnb": "^2.0.0",
     "babel-tape-runner": "^2.0.1",
-    "eslint": "^3.1.1",
+    "eslint": "^3.2.0",
     "eslint-find-rules": "^1.11.1",
-    "eslint-plugin-import": "^1.11.1",
+    "eslint-plugin-import": "^1.12.0",
     "in-publish": "^2.0.0",
+    "safe-publish-latest": "^1.0.1",
     "tape": "^4.6.0"
   },
   "peerDependencies": {
-    "eslint": "^3.1.1",
-    "eslint-plugin-import": "^1.11.1"
+    "eslint": "^3.2.0",
+    "eslint-plugin-import": "^1.12.0"
   },
   "engines": {
     "node": ">= 4"
