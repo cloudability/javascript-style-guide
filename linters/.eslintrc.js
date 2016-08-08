@@ -68,6 +68,9 @@ module.exports = {
       allowObjectStart  : true
     }],
 
+    // Should not leak stuff to clientside
+    'no-console': 2,
+
     // Allow multiple spaces only in certain situations involving aligned white spaces
     'no-multi-spaces': [2, {
       exceptions: {
