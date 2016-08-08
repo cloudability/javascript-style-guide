@@ -14,7 +14,7 @@ Add Cloudability's JS/X linting rules to your javascript project with these step
                    eslint-plugin-import@">=1.12" \
                    eslint-import-resolver-webpack \
                    eslint-plugin-jsx-a11y@2 \
-                   cloudability/javascript-style-guide#a153be7
+                   cloudability/javascript-style-guide#ff4bc33
 
   ln -sfi node_modules/cloudability-style/linters/.eslintrc.js ./.eslintrc.js
 ```
