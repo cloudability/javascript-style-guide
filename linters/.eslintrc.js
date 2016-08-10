@@ -151,6 +151,7 @@ module.exports = {
       ignoreTrailingComments: true,
       ignoreUrls            : true
     }],
-    'use-isnan': 2
+    'use-isnan': 2,
+    'jsx-boolean-value': 0
   }
 };
