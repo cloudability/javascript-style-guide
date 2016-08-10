@@ -15,7 +15,16 @@ module.exports = {
       node: {
         extensions: ['.js', '.json']
       }
-    }
+    },
+    'import/extensions': [
+      'node_modules',
+    ],
+    'import/core-modules': [
+    ],
+    'import/ignore': [
+      'node_modules',
+      '\\.(coffee|scss|css|less|hbs|svg|json)$',
+    ],
   },
 
   rules: {
@@ -77,6 +86,7 @@ module.exports = {
 
     // No Node.js builtin modules
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-nodejs-modules.md
+    // TODO: enable?
     'import/no-nodejs-modules': 0,
 
     // Style guide:
@@ -96,7 +106,8 @@ module.exports = {
 
     // Ensure consistent use of file extension within the import path
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
-    'import/extensions': [2, 'never'],
+    // TODO: enable when https://github.com/benmosher/eslint-plugin-import/issues/390 is resolved
+    'import/extensions': [0, 'never'],
 
     // Enforce a convention in module import order
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
@@ -108,11 +119,14 @@ module.exports = {
 
     // Require a newline after the last import/require in a group
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/newline-after-import.md
-    // TODO: enable when https://github.com/benmosher/eslint-plugin-import/issues/386 is resolved
-    'import/newline-after-import': 0,
+    'import/newline-after-import': 2,
 
     // Require modules with a single export to use a default export
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md
     'import/prefer-default-export': 2,
+
+    // Restrict which files can be imported in a given folder
+    // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-restricted-paths.md
+    'import/no-restricted-paths': 0,
   },
 };

@@ -12,25 +12,21 @@ module.exports = {
     'jsx-a11y/aria-role': 2,
 
     // Enforce all aria-* props are valid.
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-props.md
-    'jsx-a11y/aria-props': 0,
+    'jsx-a11y/aria-props': 2,
 
     // Enforce ARIA state and property values are valid.
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-proptypes.md
-    'jsx-a11y/aria-proptypes': 0,
+    'jsx-a11y/aria-proptypes': 2,
 
     // Enforce that elements that do not support ARIA roles, states, and
     // properties do not have those attributes.
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/aria-unsupported-elements.md
-    'jsx-a11y/aria-unsupported-elements': 0,
+    'jsx-a11y/aria-unsupported-elements': 2,
 
     // disallow href "#"
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/href-no-hash.md
-    'jsx-a11y/href-no-hash': 0,
+    'jsx-a11y/href-no-hash': [2, ['a']],
 
     // Require <img> to have a non-empty `alt` prop, or role="presentation"
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/img-has-alt.md
@@ -41,12 +37,11 @@ module.exports = {
     'jsx-a11y/img-redundant-alt': 2,
 
     // require that JSX labels use "htmlFor"
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-for.md
-    'jsx-a11y/label-has-for': 0,
+    'jsx-a11y/label-has-for': [2, ['label']],
 
     // require that mouseover/out come with focus/blur, for keyboard-only users
-    // TODO: enable?
+    // TODO: evaluate
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
     'jsx-a11y/mouse-events-have-key-events': 0,
 
@@ -69,19 +64,37 @@ module.exports = {
 
     // Enforce that elements with ARIA roles must have all required attributes
     // for that role.
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/role-has-required-aria-props.md
-    'jsx-a11y/role-has-required-aria-props': 0,
+    'jsx-a11y/role-has-required-aria-props': 2,
 
     // Enforce that elements with explicit or implicit roles defined contain
     // only aria-* properties supported by that role.
-    // TODO: enable
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/role-supports-aria-props.md
-    'jsx-a11y/role-supports-aria-props': 0,
+    'jsx-a11y/role-supports-aria-props': 2,
 
     // Enforce tabIndex value is not greater than zero.
     // TODO: evaluate
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/tabindex-no-positive.md
     'jsx-a11y/tabindex-no-positive': 0,
+
+    // ensure <hX> tags have content and are not aria-hidden
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/heading-has-content.md
+    'jsx-a11y/heading-has-content': [2, ['']],
+
+    // require HTML elements to have a "lang" prop
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/html-has-lang.md
+    'jsx-a11y/html-has-lang': 2,
+
+    // require HTML element's lang prop to be valid
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/lang.md
+    'jsx-a11y/lang': 2,
+
+    // prevent marquee elements
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-marquee.md
+    'jsx-a11y/no-marquee': 2,
+
+    // only allow <th> to have the "scope" attr
+    // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/scope.md
+    'jsx-a11y/scope': 2,
   },
 };

@@ -6,14 +6,22 @@ Based off the [airbnb javascript style guide](https://github.com/airbnb/javascri
 Add Cloudability's JS/X linting rules to your javascript project with these steps:
 
 ```
-  npm i --save-dev eslint@2 eslint-config-airbnb@9 eslint-plugin-react@5 babel-eslint@6 \
-                   eslint-plugin-import eslint-plugin-jsx-a11y \
-                   cloudability/javascript-style-guide#gui_react
+  npm i --save-dev eslint@">=3.2 <4" \
+                   eslint-config-airbnb@10 \
+                   eslint-config-airbnb-base@5 \
+                   eslint-plugin-react@6 \
+                   babel-eslint@6 \
+                   eslint-plugin-import@">=1.12" \
+                   eslint-import-resolver-webpack \
+                   eslint-plugin-jsx-a11y@2 \
+                   cloudability/javascript-style-guide#ff4bc33
 
-  ln -sfi node_modules/cloudability-style/linters/.eslintrc ./.eslintrc
+  ln -sfi node_modules/cloudability-style/linters/.eslintrc.js ./.eslintrc.js
 ```
 
 Other Style Guides
+ - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
+ - [React](react/)
  - [CSS & Sass](https://github.com/airbnb/css)
  - [Ruby](https://github.com/airbnb/ruby)
 
@@ -931,7 +939,13 @@ Other Style Guides
     const itemHeight = (item) => item.height > 256 ? item.largeSize : item.smallSize;
 
     // good
-    const itemHeight = (item) => { return item.height > 256 ? item.largeSize : item.smallSize; };
+    const itemHeight = item => (item.height > 256 ? item.largeSize : item.smallSize);
+
+    // good
+    const itemHeight = (item) => {
+      const { height, largeSize, smallSize } = item;
+      return height > 256 ? largeSize : smallSize;
+    };
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -1228,9 +1242,11 @@ Other Style Guides
 ## Iterators and Generators
 
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) Don't use iterators. Prefer JavaScript's higher-order functions like `map()` and `reduce()` instead of loops like `for-of`. eslint: [`no-iterator`](http://eslint.org/docs/rules/no-iterator.html)
+  - [11.1](#iterators--nope) Don't use iterators. Prefer JavaScript's higher-order functions instead of loops like `for-in` or `for-of`. eslint: [`no-iterator`](http://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](http://eslint.org/docs/rules/no-restricted-syntax)
 
     > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
+
+    > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
 
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
@@ -1933,7 +1949,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
-  - [18.5](#whitespace--newline-at-end) End files with a single newline character.
+  - [18.5](#whitespace--newline-at-end) End files with a single newline character. eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
 
     ```javascript
     // bad
@@ -2220,7 +2236,7 @@ Other Style Guides
          firstName: 'Florence',
     -    lastName: 'Nightingale'
     +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb graph', 'modern nursing']
+    +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
     // good - git diff with trailing comma
@@ -2445,7 +2461,7 @@ Other Style Guides
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
-  - [22.5](#naming--self-this) Don't save references to `this`. Use arrow functions or Function#bind. jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
+  - [22.5](#naming--self-this) Don't save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind). jscs: [`disallowNodeTypes`](http://jscs.info/rule/disallowNodeTypes)
 
     ```javascript
     // bad
