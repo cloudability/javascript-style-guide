@@ -127,6 +127,6 @@
     'max-len': [2, 120, 2, { 'ignoreUrls': true }],
     'use-isnan': 2,
     // we want to explicitly define boolean values within jsx
-    'jsx-boolean-value': 0,
+    'react/jsx-boolean-value': [2, 'always'],
   }
 }
