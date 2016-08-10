@@ -126,5 +126,7 @@
     'no-with': 2,
     'max-len': [2, 120, 2, { 'ignoreUrls': true }],
     'use-isnan': 2,
+    // we want to explicitly define boolean values within jsx
+    'jsx-boolean-value': 0,
   }
 }
