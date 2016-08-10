@@ -4,19 +4,21 @@ module.exports = {
   settings: {
     'import/resolver': 'webpack'
   },
+  env: {
+    browser: true,
+    node   : true
+  },
   globals: {
     $        : false,
     _        : false,
-    __dirname: false,
     Backbone : false,
-    cui      : false,
+    jQuery   : false,
     describe : false,
     expect   : false,
-    exports  : false,
     it       : false,
-    jQuery   : false,
-    module   : false,
-    require  : false
+
+    cui       : false,
+    Highcharts: false
   },
 
   rules: {
