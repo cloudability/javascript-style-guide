@@ -26,7 +26,12 @@ module.exports = {
      * React-related rules
      *
      */
+
+    // Forcing spacing with braces in jsx
     'react/jsx-curly-spacing': [2, 'always'],
+
+    // we want to explicitly define boolean values within jsx
+    'react/jsx-boolean-value': [2, 'always'],
 
     /*
      *
