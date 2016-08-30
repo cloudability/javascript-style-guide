@@ -30,10 +30,10 @@ module.exports = {
      */
 
     // Forcing spacing with braces in jsx
-    'react/jsx-curly-spacing': [2, 'always'],
+    'react/jsx-curly-spacing': ['error', 'always'],
 
     // we want to explicitly define boolean values within jsx
-    'react/jsx-boolean-value': [2, 'always'],
+    'react/jsx-boolean-value': ['error', 'always'],
 
     /*
      *
@@ -41,22 +41,22 @@ module.exports = {
      *
      */
     // GUI team has decided against dangling commas
-    'comma-dangle'   : [2, 'never'],
-    'callback-return': 2,
+    'comma-dangle'   : ['error', 'never'],
+    'callback-return': 'error',
 
     // The consistency checks do not match our early-returns + normal callback coding style
-    'consistent-return': 0,
+    'consistent-return': 'off',
 
     // Relaxed but consistent usage of braces
-    curly: [2, 'multi-line', 'consistent'],
+    curly: ['error', 'multi-line', 'consistent'],
 
     // Functions can be anonymous when used as an argument
-    'func-names': 0,
+    'func-names': 'off',
 
     // Enforces how MDN writes their generators
-    'generator-star-spacing': [2, { before: false, after: true }],
-    'handle-callback-err'   : [2, '^(err|.*(e|E)rror)'],
-    indent                  : [2, 2, {
+    'generator-star-spacing': ['error', { before: false, after: true }],
+    'handle-callback-err'   : ['error', '^(err|.*(e|E)rror)'],
+    indent                  : ['error', 2, {
       SwitchCase        : 1,
       VariableDeclarator: { var: 2, let: 2, const: 3 }
     }],
@@ -68,7 +68,7 @@ module.exports = {
         multiLine : { beforeColon: false, afterColon: true, align: 'colon' }
       }
     ],
-    'lines-around-comment': [2, {
+    'lines-around-comment': ['error', {
       beforeBlockComment: true,
       beforeLineComment : true,
       allowBlockStart   : true,
@@ -76,10 +76,10 @@ module.exports = {
     }],
 
     // Should not leak stuff to clientside
-    'no-console': 2,
+    'no-console': 'error',
 
     // Allow multiple spaces only in certain situations involving aligned white spaces
-    'no-multi-spaces': [2, {
+    'no-multi-spaces': ['error', {
       exceptions: {
         ImportDeclaration : true,
         Property          : true,
@@ -89,32 +89,32 @@ module.exports = {
     }],
 
     // Do not allow shadowed functions except in cases of extremely common parameter names
-    'no-shadow': [2, { allow: ['callback', 'cb', 'done', 'err', 'error', 'next', 'req', 'res'] }],
+    'no-shadow': ['error', { allow: ['callback', 'cb', 'done', 'err', 'error', 'next', 'req', 'res'] }],
 
     // We directly modify the `req` parameter in routing middleware
-    'no-param-reassign': [2, { props: false }],
+    'no-param-reassign': ['error', { props: false }],
 
     // Currently a standard usage in GUI js
-    'no-underscore-dangle': 0,
+    'no-underscore-dangle': 'off',
 
     // Only enforce shorthand on properties because doing so on methods produces weird behavior with anonymous fn
-    'object-shorthand': [2, 'properties'],
+    'object-shorthand': ['error', 'properties'],
 
     // Aggregate uninitialized declarations into one line. Otherwise, use multiple
-    'one-var': [2, { uninitialized: 'always', initialized: 'never' }],
+    'one-var': ['error', { uninitialized: 'always', initialized: 'never' }],
 
     // We allow developers to add padded blocks if they aid readability
-    'padded-blocks': 0,
+    'padded-blocks': 'off',
 
     // We do not gain anything from forcing multiline arrow functions
-    'prefer-arrow-callback': 0,
+    'prefer-arrow-callback': 'off',
 
     // Benefit of string templates is not worth all the white noise of current GUI infractions
-    'prefer-template': 0,
+    'prefer-template': 'off',
 
     // We do not like space before the first parenthesis in function decl
-    'space-before-function-paren': [2, 'never'],
-    'spaced-comment'             : [2, 'always', {
+    'space-before-function-paren': ['error', 'never'],
+    'spaced-comment'             : ['error', 'always', {
       line: {
         markers: ['/', 'global']
       },
@@ -125,39 +125,39 @@ module.exports = {
     }],
 
     // With modules, `use-strict` is superfluous but we have a mixed building system
-    strict: 0,
+    strict: 'off',
 
     /*
      *
      * Taken & adapted from Cloudability GUI's eslint
      *
      */
-    'brace-style'    : [2, '1tbs', { allowSingleLine: false }],
-    'consistent-this': [2, 'self'],
-    'func-style'     : [2, 'declaration', { allowArrowFunctions: true }],
+    'brace-style'    : ['error', '1tbs', { allowSingleLine: false }],
+    'consistent-this': ['error', 'self'],
+    'func-style'     : ['error', 'declaration', { allowArrowFunctions: true }],
 
-    // 'new-cap': [2, {'capIsNew': false}],
-    'operator-linebreak': [2, 'after'],
+    // 'new-cap': ['error', {'capIsNew': false}],
+    'operator-linebreak': ['error', 'after'],
 
     // Stuff taken & adapted from Datahero's unfinished eslint
-    'no-alert'             : 2,
-    'no-bitwise'           : 2,
-    'no-constant-condition': 2,
-    'no-unused-vars'       : [2, {
+    'no-alert'             : 'error',
+    'no-bitwise'           : 'error',
+    'no-constant-condition': 'error',
+    'no-unused-vars'       : ['error', {
       vars: 'all',
       args: 'after-used',
 
       argsIgnorePattern: 'callback|done|next',
       varsIgnorePattern: '_|colors'
     }],
-    'no-use-before-define': [2, 'nofunc'],
-    'max-len'             : [2, {
+    'no-use-before-define': ['error', 'nofunc'],
+    'max-len'             : ['error', {
       code    : 120,
       tabWidth: 2,
 
       ignoreTrailingComments: true,
       ignoreUrls            : true
     }],
-    'use-isnan': 2
+    'use-isnan': 'error'
   }
 };
