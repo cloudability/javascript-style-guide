@@ -5,7 +5,7 @@ Based off the [airbnb javascript style guide](https://github.com/airbnb/javascri
 Add Cloudability's JS/X linting rules to your javascript project with these steps:
 
 ```
-  npm i --save-dev eslint@">=3.2 <4" \
+  npm i --save-dev eslint@">=3.4 <4" \
                    eslint-config-airbnb@10 \
                    eslint-config-airbnb-base@5 \
                    eslint-plugin-react@6 \
@@ -13,7 +13,7 @@ Add Cloudability's JS/X linting rules to your javascript project with these step
                    eslint-plugin-import@">=1.12" \
                    eslint-import-resolver-webpack \
                    eslint-plugin-jsx-a11y@2 \
-                   cloudability/javascript-style-guide#0ea3e35
+                   cloudability/javascript-style-guide#e2badf8
 
   ln -sfi node_modules/cloudability-style/linters/.eslintrc.js ./.eslintrc.js
 ```
@@ -2250,7 +2250,7 @@ Other Style Guides
   - [19.2](#commas--dangling) Additional trailing comma: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
 
     > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
-    
+
     ```javascript
     // bad - git diff without trailing comma
     const hero = {
