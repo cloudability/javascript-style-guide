@@ -17,6 +17,7 @@ module.exports = {
     expect   : false,
     it       : false,
 
+    DEBUG     : false,
     cui       : false,
     Highcharts: false
   },
