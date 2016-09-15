@@ -14,10 +14,16 @@ module.exports = {
   rules: {
     // enforces no braces where they can be omitted
     // http://eslint.org/docs/rules/arrow-body-style
-    'arrow-body-style': ['error', 'as-needed'],
+    // TODO: enable requireReturnForObjectLiteral?
+    'arrow-body-style': ['error', 'as-needed', {
+      requireReturnForObjectLiteral: false,
+    }],
 
     // require parens in arrow function arguments
-    'arrow-parens': 'off',
+    // http://eslint.org/docs/rules/arrow-parens
+    'arrow-parens': ['error', 'as-needed', {
+      requireForBlockBody: true,
+    }],
 
     // require space before/after arrow function's arrow
     // http://eslint.org/docs/rules/arrow-spacing
@@ -101,9 +107,14 @@ module.exports = {
       ignoreReadBeforeAssign: true,
     }],
 
+    // disallow parseInt() in favor of binary, octal, and hexadecimal literals
+    // http://eslint.org/docs/rules/prefer-numeric-literals
+    // TODO: enable, semver-major
+    'prefer-numeric-literals': 'off',
+
     // suggest using Reflect methods where applicable
     // http://eslint.org/docs/rules/prefer-reflect
-    // TODO: enable
+    // TODO: enable?
     'prefer-reflect': 'off',
 
     // use rest parameters instead of arguments
@@ -133,6 +144,10 @@ module.exports = {
       ignoreMemberSort: false,
       memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
     }],
+
+    // require a Symbol description
+    // http://eslint.org/docs/rules/symbol-description
+    'symbol-description': 'error',
 
     // enforce usage of spacing in template strings
     // http://eslint.org/docs/rules/template-curly-spacing

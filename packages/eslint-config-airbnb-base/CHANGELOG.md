@@ -1,3 +1,29 @@
+7.1.0 / 2016-09-11
+==================
+ - [minor] enable `arrow-parens` rule
+
+7.0.1 / 2016-09-10
+==================
+ - [patch] loosen `max-len` by ignoring strings
+ - [deps] update to `eslint` `v3.5.0`
+
+7.0.0 / 2016-09-06
+==================
+ - [breaking] Add no-plusplus in style.js and added explanation in README (#1012)
+
+6.0.0 / 2016-09-06
+==================
+ - [breaking] `valid-typeof`: enable `requireStringLiterals` option
+ - [breaking] enable `class-methods-use-this`
+ - [breaking] enable `symbol-description`
+ - [breaking] enable `no-bitwise`
+ - [breaking] enable `no-tabs`
+ - [breaking] enable `func-call-spacing`
+ - [breaking] enable `no-template-curly-in-string`
+ - [patch] remove redundant `DebuggerStatement` from `no-restricted-syntax` (#1031)
+ - [deps] update `eslint`, `eslint-find-rules`, `eslint-plugin-import`
+ - Update `ecmaVersion` to `2016`
+
 5.0.3 / 2016-08-21
 ==================
  - [fix] correct `import/extensions` list (#1013)

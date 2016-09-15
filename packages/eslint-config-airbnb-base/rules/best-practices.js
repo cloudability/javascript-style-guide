@@ -13,6 +13,10 @@ module.exports = {
     // specify the maximum cyclomatic complexity allowed in a program
     complexity: ['off', 11],
 
+    // enforce that class methods use "this"
+    // http://eslint.org/docs/rules/class-methods-use-this
+    'class-methods-use-this': 'error',
+
     // require return statements to either always or never specify values
     'consistent-return': 'error',
 
@@ -92,6 +96,8 @@ module.exports = {
     // disallow reassignments of native objects or read-only globals
     // http://eslint.org/docs/rules/no-global-assign
     'no-global-assign': ['error', { exceptions: [] }],
+    // deprecated in favor of no-global-assign
+    'no-native-reassign': 'off',
 
     // disallow implicit type conversions
     // http://eslint.org/docs/rules/no-implicit-coercion
@@ -139,10 +145,6 @@ module.exports = {
     // disallow use of multiline strings
     'no-multi-str': 'error',
 
-    // disallow reassignments of native objects
-    // TODO: deprecated in favor of no-global-assign
-    'no-native-reassign': 'off',
-
     // disallow use of new operator when not part of the assignment or comparison
     'no-new': 'error',
 
@@ -169,6 +171,15 @@ module.exports = {
 
     // disallow declaring the same variable more then once
     'no-redeclare': 'error',
+
+    // disallow certain object properties
+    // http://eslint.org/docs/rules/no-restricted-properties
+    // TODO: enable, semver-major
+    'no-restricted-properties': ['off', {
+      object: 'arguments',
+      property: 'callee',
+      message: 'arguments.callee is deprecated,'
+    }],
 
     // disallow use of assignment in return statement
     'no-return-assign': 'error',

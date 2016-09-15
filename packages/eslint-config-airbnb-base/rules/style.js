@@ -30,14 +30,15 @@ module.exports = {
 
     // enforce spacing between functions and their invocations
     // http://eslint.org/docs/rules/func-call-spacing
-    // TODO: enable, semver-minor
-    'func-call-spacing': ['off', 'never'],
+    'func-call-spacing': ['error', 'never'],
 
     // require function expressions to have a name
     'func-names': 'warn',
 
     // enforces use of function declarations or expressions
-    'func-style': 'off',
+    // http://eslint.org/docs/rules/func-style
+    // TODO: enable
+    'func-style': ['off', 'expression'],
 
     // Blacklist certain identifiers to prevent them being used
     // http://eslint.org/docs/rules/id-blacklist
@@ -72,12 +73,29 @@ module.exports = {
       }
     }],
 
+    // enforce position of line comments
+    // http://eslint.org/docs/rules/line-comment-position
+    // TODO: enable?
+    'line-comment-position': ['off', {
+      position: 'above',
+      ignorePattern: '',
+      applyDefaultPatterns: true,
+    }],
+
     // disallow mixed 'LF' and 'CRLF' as linebreaks
     // http://eslint.org/docs/rules/linebreak-style
     'linebreak-style': ['error', 'unix'],
 
     // enforces empty lines around comments
     'lines-around-comment': 'off',
+
+    // require or disallow newlines around directives
+    // http://eslint.org/docs/rules/lines-around-directive
+    // TODO: enable, semver-major
+    'lines-around-directive': ['off', {
+      before: 'always',
+      after: 'always',
+    }],
 
     // specify the maximum depth that blocks can be nested
     'max-depth': ['off', 4],
@@ -86,7 +104,9 @@ module.exports = {
     // http://eslint.org/docs/rules/max-len
     'max-len': ['error', 100, 2, {
       ignoreUrls: true,
-      ignoreComments: false
+      ignoreComments: false,
+      ignoreStrings: true,
+      ignoreTemplateLiterals: true,
     }],
 
     // specify the max number of lines in a file
@@ -112,7 +132,8 @@ module.exports = {
 
     // require multiline ternary
     // http://eslint.org/docs/rules/multiline-ternary
-    'multiline-ternary': 'off',
+    // TODO: enable?
+    'multiline-ternary': ['off', 'never'],
 
     // require a capital letter for constructors
     'new-cap': ['error', { newIsCap: true }],
@@ -137,8 +158,7 @@ module.exports = {
 
     // disallow use of bitwise operators
     // http://eslint.org/docs/rules/no-bitwise
-    // TODO: enable
-    'no-bitwise': 'off',
+    'no-bitwise': 'error',
 
     // disallow use of the continue statement
     // http://eslint.org/docs/rules/no-continue
@@ -181,7 +201,8 @@ module.exports = {
     'no-new-object': 'error',
 
     // disallow use of unary operators, ++ and --
-    'no-plusplus': 'off',
+    // http://eslint.org/docs/rules/no-plusplus
+    'no-plusplus': 'error',
 
     // disallow certain syntax forms
     // http://eslint.org/docs/rules/no-restricted-syntax
@@ -196,8 +217,7 @@ module.exports = {
     'no-spaced-func': 'error',
 
     // disallow tab characters entirely
-    // TODO: enable
-    'no-tabs': 'off',
+    'no-tabs': 'error',
 
     // disallow the use of ternary operators
     'no-ternary': 'off',
