@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-    'react'
+    'react',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -8,7 +8,7 @@ module.exports = {
     },
   },
   ecmaFeatures: {
-    jsx: true
+    jsx: true,
   },
 
   // View link below for react rules documentation
@@ -17,6 +17,21 @@ module.exports = {
     // Specify whether double or single quotes should be used in JSX attributes
     // http://eslint.org/docs/rules/jsx-quotes
     'jsx-quotes': ['error', 'prefer-double'],
+
+    'class-methods-use-this': ['error', {
+      exceptMethods: [
+        'render',
+        'getInitialState',
+        'getDefaultProps',
+        'componentWillMount',
+        'componentDidMount',
+        'componentWillReceiveProps',
+        'shouldComponentUpdate',
+        'componentWillUpdate',
+        'componentDidUpdate',
+        'componentWillUnmount',
+      ],
+    }],
 
     // Prevent missing displayName in a React component definition
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/display-name.md
@@ -170,7 +185,8 @@ module.exports = {
 
     // Restrict file extensions that may be required
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-extension.md
-    'react/require-extension': ['error', { extensions: ['.jsx', '.js'] }],
+    // deprecated in favor of import/extensions
+    'react/require-extension': ['off', { extensions: ['.jsx', '.js'] }],
 
     // Require render() methods to return something
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md
@@ -263,6 +279,14 @@ module.exports = {
     // Require style prop value be an object or var
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md
     'react/style-prop-object': 'error',
+
+    // Prevent invalid characters from appearing in markup
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unescaped-entities.md
+    'react/no-unescaped-entities': 'error',
+
+    // Prevent passing of children as props
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-children-prop.md
+    'react/no-children-prop': 'error'
   },
 
   settings: {

@@ -1,3 +1,14 @@
+12.0.0 / 2016-09-24
+==================
+- [breaking] Enable react rules: `react/no-unescaped-entities`, `react/no-children-prop`
+- [breaking] [deps] update `eslint-config-airbnb-base`
+- [patch] disable deprecated and redundant `react/require-extension` rule (#978)
+
+11.2.0 / 2016-09-23
+==================
+- [new] set `ecmaVersion` to 2017; enable object rest/spread; update `babel-preset-airbnb`
+- [deps] update `eslint`, `eslint-config-airbnb-base`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, `eslint-plugin-react`, `eslint-find-rules`, `safe-publish-latest`
+
 11.1.0 / 2016-09-11
 ==================
 - [deps] update `eslint-config-airbnb-base`, `eslint`

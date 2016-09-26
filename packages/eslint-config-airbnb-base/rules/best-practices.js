@@ -15,7 +15,9 @@ module.exports = {
 
     // enforce that class methods use "this"
     // http://eslint.org/docs/rules/class-methods-use-this
-    'class-methods-use-this': 'error',
+    'class-methods-use-this': ['error', {
+      exceptMethods: [],
+    }],
 
     // require return statements to either always or never specify values
     'consistent-return': 'error',
@@ -174,11 +176,16 @@ module.exports = {
 
     // disallow certain object properties
     // http://eslint.org/docs/rules/no-restricted-properties
-    // TODO: enable, semver-major
-    'no-restricted-properties': ['off', {
+    'no-restricted-properties': ['error', {
       object: 'arguments',
       property: 'callee',
       message: 'arguments.callee is deprecated,'
+    }, {
+      property: '__defineGetter__',
+      message: 'Please use Object.defineProperty instead.',
+    }, {
+      property: '__defineSetter__',
+      message: 'Please use Object.defineProperty instead.',
     }],
 
     // disallow use of assignment in return statement

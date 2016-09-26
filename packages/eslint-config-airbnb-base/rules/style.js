@@ -26,7 +26,7 @@ module.exports = {
     'consistent-this': 'off',
 
     // enforce newline at the end of file, with no multiple empty lines
-    'eol-last': 'error',
+    'eol-last': ['error', 'always'],
 
     // enforce spacing between functions and their invocations
     // http://eslint.org/docs/rules/func-call-spacing
@@ -91,8 +91,7 @@ module.exports = {
 
     // require or disallow newlines around directives
     // http://eslint.org/docs/rules/lines-around-directive
-    // TODO: enable, semver-major
-    'lines-around-directive': ['off', {
+    'lines-around-directive': ['error', {
       before: 'always',
       after: 'always',
     }],
@@ -136,7 +135,12 @@ module.exports = {
     'multiline-ternary': ['off', 'never'],
 
     // require a capital letter for constructors
-    'new-cap': ['error', { newIsCap: true }],
+    'new-cap': ['error', {
+      newIsCap: true,
+      newIsCapExceptions: [],
+      capIsNew: false,
+      capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
+    }],
 
     // disallow the omission of parentheses when invoking a constructor with no arguments
     // http://eslint.org/docs/rules/new-parens
