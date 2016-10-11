@@ -26,24 +26,41 @@ module.exports = {
 
     /*
      *
-     * React-related rules
+     * Rules related to react and other modules
      *
      */
 
     // Forcing spacing with braces in jsx
     'react/jsx-curly-spacing': ['error', 'always'],
 
-    // we want to explicitly define boolean values within jsx
+    // We want to explicitly define boolean values within jsx
     'react/jsx-boolean-value': ['error', 'always'],
+
+    // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
+    'react/no-danger': 'error',
+
+    // Enable `skipShapeProps` for this rule
+    'react/no-unused-prop-types': ['error', { customValidators: [], skipShapeProps: true }],
+
+    // Allow devs to prefer PureComponents when appropriate
+    'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
+
+    // We have not been strict enough with `Label` component, so this rule gives too much white noise
+    'jsx-a11y/label-has-for': 'off',
+
+    // AirBnB enables this but we attach handlers to too many static elements to turn this on
+    'jsx-a11y/no-static-element-interactions': 'off',
 
     /*
      *
      * Extra ES6-related restrictions and misc AirBnB overrides
      *
      */
-    // GUI team has decided against dangling commas
-    'comma-dangle'   : ['error', 'never'],
+
     'callback-return': 'error',
+
+    // GUI team has decided against dangling commas
+    'comma-dangle': ['error', 'never'],
 
     // The consistency checks do not match our early-returns + normal callback coding style
     'consistent-return': 'off',
@@ -76,6 +93,9 @@ module.exports = {
       allowObjectStart  : true
     }],
 
+    // Devs can choose best style here
+    'multiline-ternary': 'off',
+
     // Should not leak stuff to clientside
     'no-console': 'error',
 
@@ -106,9 +126,6 @@ module.exports = {
 
     // We allow developers to add padded blocks if they aid readability
     'padded-blocks': 'off',
-
-    // We do not gain anything from forcing multiline arrow functions
-    'prefer-arrow-callback': 'off',
 
     // Benefit of string templates is not worth all the white noise of current GUI infractions
     'prefer-template': 'off',
@@ -156,8 +173,11 @@ module.exports = {
       code    : 120,
       tabWidth: 2,
 
-      ignoreTrailingComments: true,
-      ignoreUrls            : true
+      ignoreComments: true,
+      ignoreUrls    : true,
+
+      ignoreStrings         : true,
+      ignoreTemplateLiterals: true,
     }],
     'use-isnan': 'error'
   }
