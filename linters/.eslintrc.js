@@ -39,8 +39,8 @@ module.exports = {
     // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
     'react/no-danger': 'error',
 
-    // Enable `skipShapeProps` for this rule
-    'react/no-unused-prop-types': ['error', { customValidators: [], skipShapeProps: true }],
+    // The checks here are not sophisticated enough to activate. Too many false errors. TODO revisit
+    'react/no-unused-prop-types': ['off', { customValidators: [], skipShapeProps: true }],
 
     // Allow devs to prefer PureComponents when appropriate
     'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
