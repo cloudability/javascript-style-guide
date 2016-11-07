@@ -179,13 +179,17 @@ module.exports = {
     'no-restricted-properties': ['error', {
       object: 'arguments',
       property: 'callee',
-      message: 'arguments.callee is deprecated,'
+      message: 'arguments.callee is deprecated',
     }, {
       property: '__defineGetter__',
       message: 'Please use Object.defineProperty instead.',
     }, {
       property: '__defineSetter__',
       message: 'Please use Object.defineProperty instead.',
+    }, {
+      object: 'Math',
+      property: 'pow',
+      message: 'Use the exponentiation operator (**) instead.',
     }],
 
     // disallow use of assignment in return statement
@@ -232,6 +236,10 @@ module.exports = {
     // http://eslint.org/docs/rules/no-useless-escape
     'no-useless-escape': 'error',
 
+    // disallow redundant return; keywords
+    // http://eslint.org/docs/rules/no-useless-return
+    'no-useless-return': 'error',
+
     // disallow use of void operator
     // http://eslint.org/docs/rules/no-void
     'no-void': 'error',
@@ -250,7 +258,7 @@ module.exports = {
 
     // require immediate function invocation to be wrapped in parentheses
     // http://eslint.org/docs/rules/wrap-iife.html
-    'wrap-iife': ['error', 'outside'],
+    'wrap-iife': ['error', 'outside', { functionPrototypeMethods: false }],
 
     // require or disallow Yoda conditions
     yoda: 'error'

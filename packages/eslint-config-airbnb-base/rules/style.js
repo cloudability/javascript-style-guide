@@ -32,7 +32,15 @@ module.exports = {
     // http://eslint.org/docs/rules/func-call-spacing
     'func-call-spacing': ['error', 'never'],
 
+    // requires function names to match the name of the variable or property to which they are
+    // assigned
+    // http://eslint.org/docs/rules/func-name-matching
+    'func-name-matching': ['off', 'always', {
+      includeCommonJSModuleExports: false
+    }],
+
     // require function expressions to have a name
+    // http://eslint.org/docs/rules/func-names
     'func-names': 'warn',
 
     // enforces use of function declarations or expressions
@@ -53,7 +61,23 @@ module.exports = {
 
     // this option sets a specific tab width for your code
     // http://eslint.org/docs/rules/indent
-    indent: ['error', 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }],
+    indent: ['error', 2, {
+      SwitchCase: 1,
+      VariableDeclarator: 1,
+      outerIIFEBody: 1,
+      // MemberExpression: null,
+      // CallExpression: {
+        // parameters: null,
+      // },
+      FunctionDeclaration: {
+        parameters: 1,
+        body: 1
+      },
+      FunctionExpression: {
+        parameters: 1,
+        body: 1
+      }
+    }],
 
     // specify whether double or single quotes should be used in JSX attributes
     // http://eslint.org/docs/rules/jsx-quotes
@@ -104,6 +128,7 @@ module.exports = {
     'max-len': ['error', 100, 2, {
       ignoreUrls: true,
       ignoreComments: false,
+      ignoreRegExpLiterals: true,
       ignoreStrings: true,
       ignoreTemplateLiterals: true,
     }],
@@ -213,6 +238,7 @@ module.exports = {
     'no-restricted-syntax': [
       'error',
       'ForInStatement',
+      'ForOfStatement',
       'LabeledStatement',
       'WithStatement',
     ],
@@ -303,7 +329,11 @@ module.exports = {
 
     // require or disallow space before function opening parenthesis
     // http://eslint.org/docs/rules/space-before-function-paren
-    'space-before-function-paren': ['error', { anonymous: 'always', named: 'never' }],
+    'space-before-function-paren': ['error', {
+      anonymous: 'always',
+      named: 'never',
+      asyncArrow: 'always'
+    }],
 
     // require or disallow spaces inside parentheses
     'space-in-parens': ['error', 'never'],
@@ -321,9 +351,17 @@ module.exports = {
     }],
 
     // require or disallow a space immediately following the // or /* in a comment
+    // http://eslint.org/docs/rules/spaced-comment
     'spaced-comment': ['error', 'always', {
-      exceptions: ['-', '+'],
-      markers: ['=', '!']           // space here to support sprockets directives
+      line: {
+        exceptions: ['-', '+'],
+        markers: ['=', '!'], // space here to support sprockets directives
+      },
+      block: {
+        exceptions: ['-', '+'],
+        markers: ['=', '!'], // space here to support sprockets directives
+        balanced: false,
+      }
     }],
 
     // require or disallow the Unicode Byte Order Mark

@@ -274,7 +274,7 @@ module.exports = {
     'react/no-unused-prop-types': ['error', {
       customValidators: [
       ],
-      skipShapeProps: false,
+      skipShapeProps: true,
     }],
 
     // Require style prop value be an object or var

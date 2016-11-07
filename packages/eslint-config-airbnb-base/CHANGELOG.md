@@ -1,3 +1,31 @@
+10.0.1 / 2016-11-07
+==================
+ - [fix] legacy config should not require `**`
+
+10.0.0 / 2016-11-06
+==================
+ - [breaking] prefer `**` over `Math.pow`
+ - [breaking] `comma-dangle`: require trailing commas for functions
+ - [breaking] enable `no-useless-return`
+ - [breaking] tighten up `indent`
+ - [breaking] tighten up `spaced-comment`
+ - [breaking] enable `import/no-named-default`
+ - [patch] loosen `max-len` with `ignoreRegExpLiterals` option
+ - [patch] loosen `no-extraneous-dependencies` for test files (#959, #1089)
+ - [deps] update `eslint`, `eslint-plugin-import`
+ - [dev deps] update `eslint-find-rules`
+ - [Tests] on `node` `v7`
+
+9.0.0 / 2016-10-16
+==================
+ - [breaking] Add `ForOfStatement` to `no-restricted-syntax` (#1122, #1134)
+ - [breaking] enable `import/no-webpack-loader-syntax` (#1123)
+ - [breaking] [deps] update `eslint` to `v3.8.0` (#1132)
+ - [breaking] [deps] update `eslint-plugin-import` to v2 (#1101)
+ - [patch] `new-cap`: add immutable.js exceptions
+ - [docs] ensure latest version of config is installed
+ - [dev deps] update `babel-preset-airbnb`, `eslint`, `eslint-find-rules`, `tape`, `safe-publish-latest`
+
 8.0.0 / 2016-09-24
 ==================
  - [breaking] enable rules: `no-restricted-properties`, `prefer-numeric-literals`, `lines-around-directive`, `import/extensions`, `import/no-absolute-path`, `import/no-dynamic-require`
