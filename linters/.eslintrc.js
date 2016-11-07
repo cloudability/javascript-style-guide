@@ -45,11 +45,11 @@ module.exports = {
     // Allow devs to prefer PureComponents when appropriate
     'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
 
-    // We have not been strict enough with `Label` component, so this rule gives too much white noise
-    'jsx-a11y/label-has-for': 'off',
+    // Accessibility is not currently a key concern for the front end
+    'jsx-a11y': 'off',
 
-    // AirBnB enables this but we attach handlers to too many static elements to turn this on
-    'jsx-a11y/no-static-element-interactions': 'off',
+    // Theoretically, we should turn this on so we remind ourselves not to depend on webpack too much, but oh well
+    'import/no-webpack-loader-syntax': 'off',
 
     /*
      *
@@ -71,12 +71,17 @@ module.exports = {
     // Functions can be anonymous when used as an argument
     'func-names': 'off',
 
-    // Enforces how MDN writes their generators
+    // Enforces styling similar to how MDN writes their generators
     'generator-star-spacing': ['error', { before: false, after: true }],
+
     'handle-callback-err'   : ['error', '^(err|.*(e|E)rror)'],
+
     indent                  : ['error', 2, {
       SwitchCase        : 1,
-      VariableDeclarator: { var: 2, let: 2, const: 3 }
+      VariableDeclarator: { var: 2, let: 2, const: 3 },
+      outerIIFEBody: 1,
+      FunctionDeclaration: { parameters: 1, body: 1 },
+      FunctionExpression: { parameters: 1, body: 1 }
     }],
 
     // Align on colon to use auto-fix to prettify large objects
@@ -86,6 +91,7 @@ module.exports = {
         multiLine : { beforeColon: false, afterColon: true, align: 'colon' }
       }
     ],
+
     'lines-around-comment': ['error', {
       beforeBlockComment: true,
       beforeLineComment : true,
