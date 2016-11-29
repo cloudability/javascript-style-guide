@@ -1,6 +1,9 @@
 module.exports = {
   parser : 'babel-eslint',
-  extends: 'airbnb',
+  extends: [
+    '../packages/eslint-config-airbnb',
+    './jsx-a11y.js'
+  ].map(require.resolve),
   settings: {
     'import/resolver': 'webpack'
   },
@@ -19,7 +22,8 @@ module.exports = {
 
     DEBUG     : false,
     cui       : false,
-    Highcharts: false
+    Highcharts: false,
+    cuiLodash : false
   },
 
   rules: {
@@ -44,9 +48,6 @@ module.exports = {
 
     // Allow devs to prefer PureComponents when appropriate
     'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
-
-    // Accessibility is not currently a key concern for the front end
-    'jsx-a11y': 'off',
 
     // Theoretically, we should turn this on so we remind ourselves not to depend on webpack too much, but oh well
     'import/no-webpack-loader-syntax': 'off',
