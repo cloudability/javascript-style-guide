@@ -61,7 +61,7 @@ module.exports = {
     'import/no-webpack-loader-syntax': 'off',
 
     // Ideally should be active to further cement dev-intention in Components props, but not currently worth effort
-    'react/require-default-props': 'error',
+    'react/require-default-props': 'off',
 
     /*
      *
