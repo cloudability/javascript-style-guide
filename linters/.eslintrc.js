@@ -1,5 +1,8 @@
 module.exports = {
   parser : 'babel-eslint',
+  plugins: [
+    'cloudability'
+  ],
   extends: [
     '../packages/eslint-config-airbnb',
     './jsx-a11y.js'
@@ -27,6 +30,8 @@ module.exports = {
   },
 
   rules: {
+
+    'cloudability/prefer-callback-set-state': 'error',
 
     /*
      *
