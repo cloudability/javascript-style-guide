@@ -45,6 +45,9 @@ module.exports = {
     // We want to explicitly define boolean values within jsx
     'react/jsx-boolean-value': ['error', 'always'],
 
+    // AirBnB will enable this in future major version, so might as well check for it now. TODO remove when redundant
+    'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+
     // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
     'react/no-danger': 'error',
 
