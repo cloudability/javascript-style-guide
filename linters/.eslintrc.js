@@ -133,9 +133,6 @@ module.exports = {
     // Do not allow shadowed functions except in cases of extremely common parameter names
     'no-shadow': ['error', { allow: ['callback', 'cb', 'done', 'err', 'error', 'next', 'req', 'res'] }],
 
-    // We directly modify the `req` parameter in routing middleware
-    'no-param-reassign': ['error', { props: false }],
-
     // Currently a standard usage in GUI js
     'no-underscore-dangle': 'off',
 
