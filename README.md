@@ -2,19 +2,6 @@
 
 Based off the [airbnb javascript style guide](https://github.com/airbnb/javascript).
 
-Add Cloudability's JS/X linting rules to your javascript project with these steps:
-
-```
-  npm i --save-dev eslint@3.11.1 \
-                   eslint-plugin-react@6.7.1 \
-                   babel-eslint@7.1.1 \
-                   eslint-plugin-import@2.2.0 \
-                   eslint-import-resolver-webpack@0.7.0 \
-                   eslint-plugin-jsx-a11y@3.0.1 \
-                   cloudability/javascript-style-guide#75fcd6
-
-  ln -sfi node_modules/cloudability-style/linters/.eslintrc.js ./.eslintrc.js
-```
 
 Other Style Guides
  - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
@@ -424,6 +411,45 @@ Other Style Guides
       return false;
     });
     ```
+
+**[⬆ back to top](#table-of-contents)**
+
+<a name="arrays--bracket-newline"></a>
+  - [4.6](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
+
+  ```javascript
+  // bad
+  const arr = [
+    [0, 1], [2, 3], [4, 5],
+  ];
+
+  const objectInArray = [{
+    id: 1,
+  }, {
+    id: 2,
+  }];
+
+  const numberInArray = [
+    1, 2,
+  ];
+
+  // good
+  const arr = [[0, 1], [2, 3], [4, 5]];
+
+  const objectInArray = [
+    {
+      id: 1,
+    },
+    {
+      id: 2,
+    },
+  ];
+
+  const numberInArray = [
+    1,
+    2,
+  ];
+  ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -3245,6 +3271,7 @@ Other Style Guides
   - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
   - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
   - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
+  - **Sourcetoad**: [sourcetoad/javascript](https://github.com/sourcetoad/javascript)
   - **Springload**: [springload/javascript](https://github.com/springload/javascript)
   - **StratoDem Analytics**: [stratodem/javascript](https://github.com/stratodem/javascript)
   - **SteelKiwi Development**: [steelkiwi/javascript](https://github.com/steelkiwi/javascript)
