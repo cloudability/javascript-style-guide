@@ -168,8 +168,6 @@ module.exports = {
      * Taken & adapted from Cloudability GUI's eslint
      *
      */
-    'brace-style'    : ['error', '1tbs', { allowSingleLine: false }],
-    'consistent-this': ['error', 'self'],
     'func-style'     : ['error', 'declaration', { allowArrowFunctions: true }],
 
     // 'new-cap': ['error', {'capIsNew': false}],
@@ -177,26 +175,18 @@ module.exports = {
 
     // Stuff taken & adapted from Datahero's unfinished eslint
     'no-alert'             : 'error',
-    'no-bitwise'           : 'error',
     'no-constant-condition': 'error',
-    'no-unused-vars'       : ['error', {
-      vars: 'all',
-      args: 'after-used',
-
-      argsIgnorePattern: 'callback|done|next',
-      varsIgnorePattern: '_|colors'
-    }],
     'no-use-before-define': ['error', 'nofunc'],
     'max-len'             : ['error', {
       code    : 120,
       tabWidth: 2,
 
       ignoreComments: true,
-      ignoreUrls    : true,
 
-      ignoreStrings         : true,
-      ignoreTemplateLiterals: true,
-    }],
-    'use-isnan': 'error'
+      ignoreRegExpLiterals: true,
+
+      // require / import statements can be as long as they need to be
+      ignorePattern: ".*(\\(|\\s)+(require|import)\\(\\'"
+    }]
   }
 };
