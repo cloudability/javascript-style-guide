@@ -1,9 +1,12 @@
 module.exports = {
+  extends: [
+    './gui',
+  ].map(require.resolve),
   env: {
     browser: false,
 
     mocha: true,
-    jest : true
+    jest : true,
   },
 
   rules: {
@@ -11,6 +14,6 @@ module.exports = {
 
     'react/jsx-filename-extension': 'off',
 
-    'global-require': 'off'
-  }
+    'global-require': 'off',
+  },
 };
