@@ -6,12 +6,6 @@ module.exports = {
     browser: false,
     node   : true,
   },
-  settings: {
-    'import/resolver': {
-      node: { extensions: ['js', 'jsx'] },
-    },
-  },
-
   rules: {
 
     // Some libraries use callbacks with a common callback structure. Do not vary this structure
