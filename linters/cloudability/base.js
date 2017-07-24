@@ -1,37 +1,22 @@
 module.exports = {
   parser : 'babel-eslint',
-  plugins: [
-    'cloudability'
-  ],
   extends: [
-    '../packages/eslint-config-airbnb',
-    './jsx-a11y.js'
+    '../../packages/eslint-config-airbnb',
   ].map(require.resolve),
-  settings: {
-    'import/resolver': 'webpack'
-  },
-  env: {
-    browser: true,
-    node   : true
+  parserOptions: {
+    ecmaVersion : 2017,
+    ecmaFeatures: {
+      impliedStrict: false,
+    },
   },
   globals: {
-    $        : false,
-    _        : false,
-    Backbone : false,
-    jQuery   : false,
-    describe : false,
-    expect   : false,
-    it       : false,
-
-    DEBUG     : false,
-    cui       : false,
-    Highcharts: false,
-    cuiLodash : false
+    // testing-related
+    describe: false,
+    expect  : false,
+    it      : false,
   },
 
   rules: {
-
-    'cloudability/prefer-callback-set-state': 'error',
 
     /*
      *
@@ -66,6 +51,7 @@ module.exports = {
     // Ideally should be active to further cement dev-intention in Components props, but not currently worth effort
     'react/require-default-props': 'off',
 
+
     /*
      *
      * Extra ES6-related restrictions and misc AirBnB overrides
@@ -74,8 +60,14 @@ module.exports = {
 
     'callback-return': 'error',
 
-    // GUI team has decided against dangling commas
-    'comma-dangle': ['error', 'never'],
+    // Force trailing commas when code is spread over multiple line for cleaner git changes
+    'comma-dangle': ['error', {
+      arrays   : 'always-multiline',
+      objects  : 'always-multiline',
+      imports  : 'always-multiline',
+      exports  : 'always-multiline',
+      functions: 'always-multiline',
+    }],
 
     // The consistency checks do not match our early-returns + normal callback coding style
     'consistent-return': 'off',
@@ -83,35 +75,35 @@ module.exports = {
     // Relaxed but consistent usage of braces
     curly: ['error', 'multi-line', 'consistent'],
 
-    // Functions can be anonymous when used as an argument
-    'func-names': 'off',
+    // Ensures that debug traces will give readable function names
+    'func-names': ['error', 'as-needed'],
 
     // Enforces styling similar to how MDN writes their generators
     'generator-star-spacing': ['error', { before: false, after: true }],
 
-    'handle-callback-err'   : ['error', '^(err|.*(e|E)rror)'],
+    'handle-callback-err': ['error', '^(err|.*(e|E)rror)'],
 
-    indent                  : ['error', 2, {
-      SwitchCase        : 1,
-      VariableDeclarator: { var: 2, let: 2, const: 3 },
-      outerIIFEBody: 1,
+    indent: ['error', 2, {
+      SwitchCase         : 1,
+      VariableDeclarator : { var: 2, let: 2, const: 3 },
+      outerIIFEBody      : 1,
       FunctionDeclaration: { parameters: 1, body: 1 },
-      FunctionExpression: { parameters: 1, body: 1 }
+      FunctionExpression : { parameters: 1, body: 1 },
     }],
 
     // Align on colon to use auto-fix to prettify large objects
     'key-spacing': [
       2, {
         singleLine: { beforeColon: false, afterColon: true },
-        multiLine : { beforeColon: false, afterColon: true, align: 'colon' }
-      }
+        multiLine : { beforeColon: false, afterColon: true, align: 'colon' },
+      },
     ],
 
     'lines-around-comment': ['error', {
       beforeBlockComment: true,
       beforeLineComment : true,
       allowBlockStart   : true,
-      allowObjectStart  : true
+      allowObjectStart  : true,
     }],
 
     // Devs can choose best style here
@@ -126,8 +118,8 @@ module.exports = {
         ImportDeclaration : true,
         Property          : true,
         LogicalExpression : true,
-        VariableDeclarator: true
-      }
+        VariableDeclarator: true,
+      },
     }],
 
     // Do not allow shadowed functions except in cases of extremely common parameter names
@@ -145,6 +137,12 @@ module.exports = {
     // We allow developers to add padded blocks if they aid readability
     'padded-blocks': 'off',
 
+    // Override default by allowing named functions, which makes stack traces more readable
+    'prefer-arrow-callback': ['error', {
+      allowNamedFunctions: true,
+      allowUnboundThis   : true,
+    }],
+
     // Benefit of string templates is not worth all the white noise of current GUI infractions
     'prefer-template': 'off',
 
@@ -152,23 +150,23 @@ module.exports = {
     'space-before-function-paren': ['error', 'never'],
     'spaced-comment'             : ['error', 'always', {
       line: {
-        markers: ['/', 'global']
+        markers: ['/', 'global'],
       },
       block: {
         exceptions: ['*'],
-        balanced  : true
-      }
+        balanced  : true,
+      },
     }],
 
-    // With modules, `use-strict` is superfluous but we have a mixed building system
-    strict: 'off',
+    // Always specify `use-strict` at top-level
+    strict: ['error', 'global'],
 
     /*
      *
      * Taken & adapted from Cloudability GUI's eslint
      *
      */
-    'func-style'     : ['error', 'declaration', { allowArrowFunctions: true }],
+    'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
 
     // 'new-cap': ['error', {'capIsNew': false}],
     'operator-linebreak': ['error', 'after'],
@@ -176,8 +174,8 @@ module.exports = {
     // Stuff taken & adapted from Datahero's unfinished eslint
     'no-alert'             : 'error',
     'no-constant-condition': 'error',
-    'no-use-before-define': ['error', 'nofunc'],
-    'max-len'             : ['error', {
+    'no-use-before-define' : ['error', 'nofunc'],
+    'max-len'              : ['error', {
       code    : 120,
       tabWidth: 2,
 
@@ -186,7 +184,7 @@ module.exports = {
       ignoreRegExpLiterals: true,
 
       // require / import statements can be as long as they need to be
-      ignorePattern: ".*(\\(|\\s)+(require|import)\\(\\'"
-    }]
-  }
+      ignorePattern: ".*(\\(|\\s)+(require|import)\\(\\'",
+    }],
+  },
 };
