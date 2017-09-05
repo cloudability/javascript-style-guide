@@ -42,16 +42,15 @@ module.exports = {
 
     // Enforce boolean attributes notation in JSX
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
-    'react/jsx-boolean-value': ['error', 'never'],
+    'react/jsx-boolean-value': ['error', 'never', { always: [] }],
 
     // Validate closing bracket location in JSX
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
 
     // Validate closing tag location in JSX
-    // https://github.com/yannickcr/eslint-plugin-react/blob/9e13ae2c51e44872b45cc15bf1ac3a72105bdd0e/docs/rules/jsx-closing-tag-location.md
-    // TODO: enable, semver-minor
-    'react/jsx-closing-tag-location': 'off',
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md
+    'react/jsx-closing-tag-location': 'error',
 
     // Enforce or disallow spaces inside of curly braces in JSX attributes
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md
@@ -90,7 +89,7 @@ module.exports = {
 
     // Prevent usage of unwrapped JSX strings
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
-    'react/jsx-no-literals': 'off',
+    'react/jsx-no-literals': ['off', { noStrings: true }],
 
     // Disallow undeclared variables in JSX
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md
@@ -187,7 +186,11 @@ module.exports = {
 
     // Prevent missing props validation in a React component definition
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prop-types.md
-    'react/prop-types': ['error', { ignore: [], customValidators: [], skipUndeclared: false }],
+    'react/prop-types': ['error', {
+      ignore: [],
+      customValidators: [],
+      skipUndeclared: false
+    }],
 
     // Prevent missing React when using JSX
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
@@ -208,6 +211,8 @@ module.exports = {
         'static-methods',
         'lifecycle',
         '/^on.+$/',
+        'getters',
+        'setters',
         '/^(get|set)(?!(InitialState$|DefaultProps$|ChildContext$)).+$/',
         'everything-else',
         '/^render.+$/',
@@ -330,6 +335,23 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/blob/9e13ae2c51e44872b45cc15bf1ac3a72105bdd0e/docs/rules/no-redundant-should-component-update.md
     // TODO: enable, semver-major
     'react/no-redundant-should-component-update': 'off',
+
+    // Prevent unused state values
+    // https://github.com/yannickcr/eslint-plugin-react/pull/1103/files
+    // TODO: enable? semver-major
+    'react/no-unused-state': 'off',
+
+    // Enforces consistent naming for boolean props
+    // https://github.com/yannickcr/eslint-plugin-react/blob/73abadb697034b5ccb514d79fb4689836fe61f91/docs/rules/boolean-prop-naming.md
+    'react/boolean-prop-naming': ['off', {
+      propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
+      rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
+    }],
+
+    // Prevents common casing typos
+    // https://github.com/yannickcr/eslint-plugin-react/blob/73abadb697034b5ccb514d79fb4689836fe61f91/docs/rules/no-typos.md
+    // TODO: enable, semver-major
+    'react/no-typos': 'off',
   },
 
   settings: {
@@ -342,5 +364,10 @@ module.exports = {
       pragma: 'React',
       version: '15.0'
     },
+    propWrapperFunctions: [
+      'forbidExtraProps', // https://www.npmjs.com/package/airbnb-prop-types
+      'exact', // https://www.npmjs.com/package/prop-types-exact
+      'Object.freeze', // https://tc39.github.io/ecma262/#sec-object.freeze
+    ],
   }
 };
