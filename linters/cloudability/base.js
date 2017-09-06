@@ -30,17 +30,14 @@ module.exports = {
     // We want to explicitly define boolean values within jsx
     'react/jsx-boolean-value': ['error', 'always'],
 
-    // AirBnB will enable this in future major version, so might as well check for it now. TODO remove when redundant
-    'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-
     // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
     'react/no-danger': 'error',
 
     // We heavily use array keys as index throught our code. Benefits are too theoretical to be worth the effort
     'react/no-array-index-key': 'error',
 
-    // The checks here are not sophisticated enough to activate. Too many false errors. TODO revisit
-    'react/no-unused-prop-types': ['off', { customValidators: [], skipShapeProps: true }],
+    // Too many false errors when passing around `props` as fn arg
+    'react/no-unused-prop-types': 'off',
 
     // Allow devs to prefer PureComponents when appropriate
     'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
@@ -78,6 +75,9 @@ module.exports = {
     // Ensures that debug traces will give readable function names
     'func-names': ['error', 'as-needed'],
 
+    // Devs can choose most readable style as long as consistent for every arg
+    'function-paren-newline': ['error', 'consistent'],
+
     // Enforces styling similar to how MDN writes their generators
     'generator-star-spacing': ['error', { before: false, after: true }],
 
@@ -87,8 +87,16 @@ module.exports = {
       SwitchCase         : 1,
       VariableDeclarator : { var: 2, let: 2, const: 3 },
       outerIIFEBody      : 1,
+      MemberExpression   : 'off',
       FunctionDeclaration: { parameters: 1, body: 1 },
       FunctionExpression : { parameters: 1, body: 1 },
+      CallExpression     : { arguments: 1 },
+      ArrayExpression    : 1,
+      ObjectExpression   : 1,
+      ImportDeclaration  : 1,
+
+      flatTernaryExpressions: false,
+      ignoredNodes          : ['JSXElement'],
     }],
 
     // Align on colon to use auto-fix to prettify large objects
@@ -128,6 +136,23 @@ module.exports = {
     // Currently a standard usage in GUI js
     'no-underscore-dangle': 'off',
 
+    // Only start enforcing rule when there are 5 or more props
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: {
+          minProperties: 5,
+          multiline    : true,
+          consistent   : true,
+        },
+        ObjectPattern: {
+          minProperties: 5,
+          multiline    : true,
+          consistent   : true,
+        },
+      },
+    ],
+
     // Only enforce shorthand on properties because doing so on methods produces weird behavior with anonymous fn
     'object-shorthand': ['error', 'properties'],
 
@@ -142,6 +167,9 @@ module.exports = {
       allowNamedFunctions: true,
       allowUnboundThis   : true,
     }],
+
+    // Interferes with other rules when trying to destructure off of `this`. Also, too heavy handed a rule
+    'prefer-destructuring': 'off',
 
     // Benefit of string templates is not worth all the white noise of current GUI infractions
     'prefer-template': 'off',
