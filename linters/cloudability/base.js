@@ -39,6 +39,9 @@ module.exports = {
     // Too many false errors when passing around `props` as fn arg
     'react/no-unused-prop-types': 'off',
 
+    // TODO revisit. Does not work well with our custom `propsValidators` usage
+    'react/no-typos': 'off',
+
     // Allow devs to prefer PureComponents when appropriate
     'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
 
