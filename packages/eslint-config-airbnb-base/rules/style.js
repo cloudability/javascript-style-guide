@@ -3,7 +3,7 @@ module.exports = {
     // enforce line breaks after opening and before closing array brackets
     // http://eslint.org/docs/rules/array-bracket-newline
     // TODO: enable? semver-major
-    'array-bracket-newline': ['off', { multiline: true, minItems: 3 }],
+    'array-bracket-newline': ['off', 'consistent'], // object option alternative: { multiline: true, minItems: 3 }
 
     // enforce line breaks between array elements
     // http://eslint.org/docs/rules/array-element-newline
@@ -153,6 +153,10 @@ module.exports = {
     // http://eslint.org/docs/rules/linebreak-style
     'linebreak-style': ['error', 'unix'],
 
+    // require or disallow an empty line between class members
+    // https://eslint.org/docs/rules/lines-between-class-members
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: false }],
+
     // enforces empty lines around comments
     'lines-around-comment': 'off',
 
@@ -196,6 +200,10 @@ module.exports = {
     // restrict the number of statements per line
     // http://eslint.org/docs/rules/max-statements-per-line
     'max-statements-per-line': ['off', { max: 1 }],
+
+    // enforce a particular style for multiline comments
+    // https://eslint.org/docs/rules/multiline-comment-style
+    'multiline-comment-style': ['off', 'starred-block'],
 
     // require multiline ternary
     // http://eslint.org/docs/rules/multiline-ternary
@@ -365,8 +373,9 @@ module.exports = {
     // http://eslint.org/docs/rules/operator-assignment
     'operator-assignment': ['error', 'always'],
 
-    // enforce operators to be placed before or after line breaks
-    'operator-linebreak': 'off',
+    // Requires operator at the beginning of the line in multiline statements
+    // https://eslint.org/docs/rules/operator-linebreak
+    'operator-linebreak': ['error', 'before'],
 
     // disallow padding within blocks
     'padded-blocks': ['error', { blocks: 'never', classes: 'never', switches: 'never' }],
