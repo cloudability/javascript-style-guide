@@ -254,8 +254,18 @@ module.exports = {
     // disallow un-paren'd mixes of different operators
     // http://eslint.org/docs/rules/no-mixed-operators
     'no-mixed-operators': ['error', {
+      // the list of arthmetic groups disallows mixing `%` and `**`
+      // with other arithmetic operators.
       groups: [
-        ['+', '-', '*', '/', '%', '**'],
+        ['%', '**'],
+        ['%', '+'],
+        ['%', '-'],
+        ['%', '*'],
+        ['%', '/'],
+        ['**', '+'],
+        ['**', '-'],
+        ['**', '*'],
+        ['**', '/'],
         ['&', '|', '^', '~', '<<', '>>', '>>>'],
         ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
         ['&&', '||'],
@@ -344,7 +354,7 @@ module.exports = {
 
     // enforce the location of single-line statements
     // http://eslint.org/docs/rules/nonblock-statement-body-position
-    'nonblock-statement-body-position': 'off',
+    'nonblock-statement-body-position': ['error', 'beside', { overrides: {} }],
 
     // require padding inside curly braces
     'object-curly-spacing': ['error', 'always'],
