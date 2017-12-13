@@ -36,6 +36,9 @@ module.exports = {
     // We heavily use array keys as index throught our code. Benefits are too theoretical to be worth the effort
     'react/no-array-index-key': 'error',
 
+    // AirBnB disabled this for server-rendering scenario, which does not apply to us
+    'react/no-did-mount-set-state': 'error',
+
     // Too many false errors when passing around `props` as fn arg
     'react/no-unused-prop-types': 'off',
 
