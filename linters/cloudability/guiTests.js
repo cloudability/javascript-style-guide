@@ -1,6 +1,6 @@
 module.exports = {
   globals: {
-    'renderTools': true
+    renderTools: false
   },
   extends: [
     './gui',
