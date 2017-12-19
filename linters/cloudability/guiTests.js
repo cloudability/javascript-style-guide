@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    'renderTools': true
+  },
   extends: [
     './gui',
   ].map(require.resolve),
