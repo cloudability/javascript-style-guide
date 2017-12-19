@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    renderTools: false
+  },
   extends: [
     './gui',
   ].map(require.resolve),
