@@ -24,7 +24,6 @@ module.exports = {
 
     DEBUG     : false,
     cui       : false,
-    Highcharts: false,
     cuiLodash : false,
   },
 

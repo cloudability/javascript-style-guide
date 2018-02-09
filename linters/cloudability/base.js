@@ -42,6 +42,9 @@ module.exports = {
     // Too many false errors when passing around `props` as fn arg
     'react/no-unused-prop-types': 'off',
 
+    // Check stateless functional components for 'this' in case it was refactored incorrectly 
+    'react/no-this-in-sfc': 'error',
+
     // TODO revisit. Does not work well with our custom `propsValidators` usage
     'react/no-typos': 'off',
 
@@ -89,6 +92,7 @@ module.exports = {
 
     'handle-callback-err': ['error', '^(err|.*(e|E)rror)'],
 
+    // Rule should be identical to AirBnB except for VariableDeclarator & MemberExpression
     indent: ['error', 2, {
       SwitchCase         : 1,
       VariableDeclarator : { var: 2, let: 2, const: 3 },
@@ -100,9 +104,9 @@ module.exports = {
       ArrayExpression    : 1,
       ObjectExpression   : 1,
       ImportDeclaration  : 1,
-
       flatTernaryExpressions: false,
-      ignoredNodes          : ['JSXElement'],
+      ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+      ignoreComments: false
     }],
 
     // Align on colon to use auto-fix to prettify large objects
@@ -202,7 +206,7 @@ module.exports = {
      */
     'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
 
-    // 'new-cap': ['error', {'capIsNew': false}],
+    // A very large chunk of our code base puts operator at end
     'operator-linebreak': ['error', 'after'],
 
     // Stuff taken & adapted from Datahero's unfinished eslint
