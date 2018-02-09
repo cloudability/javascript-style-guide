@@ -2,6 +2,8 @@
 
 Based off the [airbnb javascript style guide](https://github.com/airbnb/javascript).
 
+This guide is available in other languages too. See [Translation](#translation)
+
 Other Style Guides
 
   - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
@@ -291,7 +293,7 @@ Other Style Guides
     // best
     const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
     /* or */
-    import has from 'has';
+    import has from 'has'; // https://www.npmjs.com/package/has
     // ...
     console.log(has.call(object, key));
     ```
@@ -398,16 +400,16 @@ Other Style Guides
     // good
     [1, 2, 3].map(x => x + 1);
 
-    // bad - no returned value means `memo` becomes undefined after the first iteration
-    [[0, 1], [2, 3], [4, 5]].reduce((memo, item, index) => {
-      const flatten = memo.concat(item);
-      memo[index] = flatten;
+    // bad - no returned value means `acc` becomes undefined after the first iteration
+    [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
+      const flatten = acc.concat(item);
+      acc[index] = flatten;
     });
 
     // good
-    [[0, 1], [2, 3], [4, 5]].reduce((memo, item, index) => {
-      const flatten = memo.concat(item);
-      memo[index] = flatten;
+    [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
+      const flatten = acc.concat(item);
+      acc[index] = flatten;
       return flatten;
     });
 
@@ -435,39 +437,39 @@ Other Style Guides
   <a name="arrays--bracket-newline"></a>
   - [4.7](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
 
-  ```javascript
-  // bad
-  const arr = [
-    [0, 1], [2, 3], [4, 5],
-  ];
+    ```javascript
+    // bad
+    const arr = [
+      [0, 1], [2, 3], [4, 5],
+    ];
 
-  const objectInArray = [{
-    id: 1,
-  }, {
-    id: 2,
-  }];
-
-  const numberInArray = [
-    1, 2,
-  ];
-
-  // good
-  const arr = [[0, 1], [2, 3], [4, 5]];
-
-  const objectInArray = [
-    {
+    const objectInArray = [{
       id: 1,
-    },
-    {
+    }, {
       id: 2,
-    },
-  ];
+    }];
 
-  const numberInArray = [
-    1,
-    2,
-  ];
-  ```
+    const numberInArray = [
+      1, 2,
+    ];
+
+    // good
+    const arr = [[0, 1], [2, 3], [4, 5]];
+
+    const objectInArray = [
+      {
+        id: 1,
+      },
+      {
+        id: 2,
+      },
+    ];
+
+    const numberInArray = [
+      1,
+      2,
+    ];
+    ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1694,12 +1696,34 @@ Other Style Guides
     const truthyCount = array.filter(Boolean).length;
     ```
 
+  - [13.7](#variables--linebreak) Avoid linebreaks before or after `=` in an assignment. If your assignment violates [`max-len`](https://eslint.org/docs/rules/max-len.html), surround the value in parens. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak.html).
+
+    > Why? Linebreaks surrounding `=` can obfuscate the value of an assignment.
+
+    ```javascript
+    // bad
+    const foo =
+      superLongLongLongLongLongLongLongLongFunctionName();
+
+    // bad
+    const foo
+      = 'superLongLongLongLongLongLongLongLongString';
+
+    // good
+    const foo = (
+      superLongLongLongLongLongLongLongLongFunctionName()
+    );
+
+    // good
+    const foo = 'superLongLongLongLongLongLongLongLongString';
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Hoisting
 
   <a name="hoisting--about"></a><a name="14.1"></a>
-  - [14.1](#hoisting--about) `var` declarations get hoisted to the top of their scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone_and_errors_with_let). It’s important to know why [typeof is no longer safe](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
+  - [14.1](#hoisting--about) `var` declarations get hoisted to the top of their closest enclosing function scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone_and_errors_with_let). It’s important to know why [typeof is no longer safe](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
 
     ```javascript
     // we know this wouldn’t work (assuming there
@@ -1749,8 +1773,8 @@ Other Style Guides
     }
     ```
 
-  <a name="hoisting--named-expresions"></a><a name="14.3"></a>
-  - [14.3](#hoisting--named-expresions) Named function expressions hoist the variable name, not the function name or the function body.
+  <a name="hoisting--named-expresions"></a><a name="hoisting--named-expressions"></a><a name="14.3"></a>
+  - [14.3](#hoisting--named-expressions) Named function expressions hoist the variable name, not the function name or the function body.
 
     ```javascript
     function example() {
@@ -1940,7 +1964,7 @@ Other Style Guides
     ```
 
   <a name="comparison--no-mixed-operators"></a>
-  - [15.8](#comparison--no-mixed-operators) Enclose operators in parentheses when they are mixed in a statement. When mixing arithmetic operators, do not mix `**` and `%` with themselves or with `+`, `-`, `*`, & `/`. eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators.html)
+  - [15.8](#comparison--no-mixed-operators) When mixing operators, enclose them in parentheses. The only exception is the standard arithmetic operators (`+`, `-`, `*`, & `/`) since their precedence is broadly understood. eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators.html)
 
     > Why? This improves readability and clarifies the developer’s intention.
 
@@ -1952,6 +1976,7 @@ Other Style Guides
     const bar = a ** b - 5 % d;
 
     // bad
+    // one may be confused into thinking (a || b) && c
     if (a || b && c) {
       return d;
     }
@@ -1963,7 +1988,7 @@ Other Style Guides
     const bar = (a ** b) - (5 % d);
 
     // good
-    if ((a || b) && c) {
+    if (a || (b && c)) {
       return d;
     }
 
@@ -2142,6 +2167,20 @@ Other Style Guides
     // good
     if (foo === 123 && bar === 'abc') {
       thing1();
+    }
+    ```
+
+  <a name="control-statement--value-selection"></a>
+  - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
+
+
+    ```javascript
+    // bad
+    !isRunning && startRunning();
+
+    // good
+    if (!isRunning) {
+      startRunning();
     }
     ```
 
@@ -2968,6 +3007,11 @@ Other Style Guides
 
     // good
     this.firstName = 'Panda';
+
+    // good, in environments where WeakMaps are available
+    // see https://kangax.github.io/compat-table/es6/#test-WeakMap
+    const firstNames = new WeakMap();
+    firstNames.set(this, 'Panda');
     ```
 
   <a name="naming--self-this"></a><a name="22.5"></a>
@@ -3167,7 +3211,7 @@ Other Style Guides
 ## Events
 
   <a name="events--hash"></a><a name="24.1"></a>
-  - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+  - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass an object literal (also known as a "hash")  instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
 
     ```javascript
     // bad
@@ -3175,8 +3219,8 @@ Other Style Guides
 
     // ...
 
-    $(this).on('listingUpdated', (e, listingId) => {
-      // do something with listingId
+    $(this).on('listingUpdated', (e, listingID) => {
+      // do something with listingID
     });
     ```
 
@@ -3184,12 +3228,12 @@ Other Style Guides
 
     ```javascript
     // good
-    $(this).trigger('listingUpdated', { listingId: listing.id });
+    $(this).trigger('listingUpdated', { listingID: listing.id });
 
     // ...
 
     $(this).on('listingUpdated', (e, data) => {
-      // do something with data.listingId
+      // do something with data.listingID
     });
     ```
 
@@ -3494,6 +3538,7 @@ Other Style Guides
   - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
   - **Generation Tux**: [GenerationTux/javascript](https://github.com/generationtux/styleguide)
   - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
+  - **GreenChef**: [greenchef/javascript](https://github.com/greenchef/javascript)
   - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
   - **Grupo-Abraxas**: [Grupo-Abraxas/javascript](https://github.com/Grupo-Abraxas/javascript)
   - **Honey**: [honeyscience/javascript](https://github.com/honeyscience/javascript)
@@ -3559,13 +3604,13 @@ Other Style Guides
   - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
   - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
   - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [sivan/javascript-style-guide](https://github.com/sivan/javascript-style-guide)
+  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [yuche/javascript](https://github.com/yuche/javascript)
   - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese (Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
   - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
   - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
   - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
   - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javascript-style-guide](https://github.com/mitsuruog/javascript-style-guide)
-  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
+  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [ParkSB/javascript-style-guide](https://github.com/ParkSB/javascript-style-guide)
   - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [leonidlebedev/javascript-airbnb](https://github.com/leonidlebedev/javascript-airbnb)
   - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
   - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
@@ -3588,7 +3633,7 @@ Other Style Guides
 
 (The MIT License)
 
-Copyright (c) 2014-2017 Airbnb
+Copyright (c) 2012 Airbnb
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -51,7 +51,21 @@ module.exports = {
     'comma-spacing': ['error', { before: false, after: true }],
 
     // enforce one true comma style
-    'comma-style': ['error', 'last'],
+    'comma-style': ['error', 'last', {
+      exceptions: {
+        ArrayExpression: false,
+        ArrayPattern: false,
+        ArrowFunctionExpression: false,
+        CallExpression: false,
+        FunctionDeclaration: false,
+        FunctionExpression: false,
+        ImportDeclaration: false,
+        ObjectExpression: false,
+        ObjectPattern: false,
+        VariableDeclaration: false,
+        NewExpression: false,
+      }
+    }],
 
     // disallow padding inside computed properties
     'computed-property-spacing': ['error', 'never'],
@@ -123,7 +137,9 @@ module.exports = {
       ObjectExpression: 1,
       ImportDeclaration: 1,
       flatTernaryExpressions: false,
-      ignoredNodes: ['JSXElement', 'JSXElement *']
+      // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+      ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+      ignoreComments: false
     }],
 
     // specify whether double or single quotes should be used in JSX attributes
@@ -373,7 +389,7 @@ module.exports = {
     // enforce "same line" or "multiple line" on object properties.
     // https://eslint.org/docs/rules/object-property-newline
     'object-property-newline': ['error', {
-      allowMultiplePropertiesPerLine: true,
+      allowAllPropertiesOnSameLine: true,
     }],
 
     // allow just one var statement per function
@@ -389,7 +405,7 @@ module.exports = {
 
     // Requires operator at the beginning of the line in multiline statements
     // https://eslint.org/docs/rules/operator-linebreak
-    'operator-linebreak': ['error', 'before'],
+    'operator-linebreak': ['error', 'before', { overrides: { '=': 'none' } }],
 
     // disallow padding within blocks
     'padded-blocks': ['error', { blocks: 'never', classes: 'never', switches: 'never' }],
