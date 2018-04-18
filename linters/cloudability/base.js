@@ -42,7 +42,7 @@ module.exports = {
     // Too many false errors when passing around `props` as fn arg
     'react/no-unused-prop-types': 'off',
 
-    // Check stateless functional components for 'this' in case it was refactored incorrectly 
+    // Check stateless functional components for 'this' in case it was refactored incorrectly
     'react/no-this-in-sfc': 'error',
 
     // TODO revisit. Does not work well with our custom `propsValidators` usage
@@ -94,19 +94,19 @@ module.exports = {
 
     // Rule should be identical to AirBnB except for VariableDeclarator & MemberExpression
     indent: ['error', 2, {
-      SwitchCase         : 1,
-      VariableDeclarator : { var: 2, let: 2, const: 3 },
-      outerIIFEBody      : 1,
-      MemberExpression   : 'off',
-      FunctionDeclaration: { parameters: 1, body: 1 },
-      FunctionExpression : { parameters: 1, body: 1 },
-      CallExpression     : { arguments: 1 },
-      ArrayExpression    : 1,
-      ObjectExpression   : 1,
-      ImportDeclaration  : 1,
+      SwitchCase            : 1,
+      VariableDeclarator    : { var: 2, let: 2, const: 3 },
+      outerIIFEBody         : 1,
+      MemberExpression      : 'off',
+      FunctionDeclaration   : { parameters: 1, body: 1 },
+      FunctionExpression    : { parameters: 1, body: 1 },
+      CallExpression        : { arguments: 1 },
+      ArrayExpression       : 1,
+      ObjectExpression      : 1,
+      ImportDeclaration     : 1,
       flatTernaryExpressions: false,
-      ignoredNodes: ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
-      ignoreComments: false
+      ignoredNodes          : ['JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+      ignoreComments        : false,
     }],
 
     // Align on colon to use auto-fix to prettify large objects
@@ -160,6 +160,8 @@ module.exports = {
           multiline    : true,
           consistent   : true,
         },
+        ImportDeclaration: { minProperties: 5, multiline: true, consistent: true },
+        ExportDeclaration: { minProperties: 5, multiline: true, consistent: true },
       },
     ],
 
