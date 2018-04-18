@@ -22,9 +22,9 @@ module.exports = {
     Backbone: false,
     jQuery  : false,
 
-    DEBUG     : false,
-    cui       : false,
-    cuiLodash : false,
+    DEBUG    : false,
+    cui      : false,
+    cuiLodash: false,
   },
 
   rules: {
@@ -35,7 +35,7 @@ module.exports = {
      *
      */
 
-    'cloudability/prefer-callback-set-state': 'error',
+    // 'cloudability/foo': 'error',
 
     /*
      *

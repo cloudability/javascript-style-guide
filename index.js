@@ -5,7 +5,7 @@ const guiTestsConfig = require('./linters/cloudability/guiTests');
 const serviceConfig = require('./linters/cloudability/service');
 
 const customCloudyRules = {
-  'prefer-callback-set-state': require('./lib/rules/prefer-callback-set-state'),
+  /* foo: require('./foo') */
 };
 
 module.exports = {
