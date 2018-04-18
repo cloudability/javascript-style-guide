@@ -24,6 +24,9 @@ module.exports = {
      *
      */
 
+    // Not worth the effort of refactoring all `this.props` usage
+    'react/destructuring-assignment': 'off',
+
     // Forcing spacing with braces in jsx
     'react/jsx-curly-spacing': ['error', 'always'],
 
