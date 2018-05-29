@@ -24,42 +24,6 @@ module.exports = {
      *
      */
 
-    // Override by adding new React 16 lifecycles to defaults
-    'react/sort-comp': ['error', {
-      order: [
-        'static-methods',
-        'lifecycle',
-        'everything-else',
-        'render',
-      ],
-      groups: {
-        lifecycle: [
-          'displayName',
-          'propTypes',
-          'contextTypes',
-          'childContextTypes',
-          'mixins',
-          'statics',
-          'defaultProps',
-          'constructor',
-          'getDefaultProps',
-          'getInitialState',
-          'state',
-          'getChildContext',
-          'getDerivedStateFromProps', // for React 16.3
-          'componentWillMount',
-          'componentDidMount',
-          'componentWillReceiveProps',
-          'shouldComponentUpdate',
-          'componentWillUpdate',
-          'getSnapshotBeforeUpdate', // for React 16.3
-          'componentDidUpdate',
-          'componentDidCatch', // for React 16
-          'componentWillUnmount',
-        ],
-      },
-    }],
-
     // Not worth the effort of refactoring all `this.props` usage
     'react/destructuring-assignment': 'off',
 
@@ -68,6 +32,9 @@ module.exports = {
 
     // We want to explicitly define boolean values within jsx
     'react/jsx-boolean-value': ['error', 'always'],
+
+    // Can cause weird spacing. Revisit once https://github.com/yannickcr/eslint-plugin-react/issues/1775 is fixed
+    'react/jsx-one-expression-per-line': 'off',
 
     // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
     'react/no-danger': 'error',
