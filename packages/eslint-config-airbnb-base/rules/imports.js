@@ -77,7 +77,7 @@ module.exports = {
         '**/__mocks__/**', // jest pattern
         'test.{js,jsx}', // repos with a single test file
         'test-*.{js,jsx}', // repos with multiple top-level test files
-        '**/*.{test,spec}.{js,jsx}', // tests where the extension denotes that it is a test
+        '**/*{.,_}{test,spec}.{js,jsx}', // tests where the extension or filename suffix denotes that it is a test
         '**/jest.config.js', // jest config
         '**/webpack.config.js', // webpack config
         '**/webpack.config.*.js', // webpack config
@@ -232,7 +232,14 @@ module.exports = {
     'import/no-cycle': ['error', { maxDepth: Infinity }],
 
     // Ensures that there are no useless path segments
-    // https://github.com/benmosher/eslint-plugin-import/issues/1032
+    // https://github.com/benmosher/eslint-plugin-import/blob/ebafcbf59ec9f653b2ac2a0156ca3bcba0a7cf57/docs/rules/no-useless-path-segments.md
     'import/no-useless-path-segments': 'error',
+
+    // dynamic imports require a leading comment with a webpackChunkName
+    // https://github.com/benmosher/eslint-plugin-import/blob/ebafcbf59ec9f653b2ac2a0156ca3bcba0a7cf57/docs/rules/dynamic-import-chunkname.md
+    'import/dynamic-import-chunkname': ['off', {
+      importFunctions: [],
+      webpackChunknameFormat: '[0-9a-zA-Z-_/.]+',
+    }],
   },
 };
