@@ -57,6 +57,9 @@ module.exports = {
     // Allow devs to prefer PureComponents when appropriate
     'react/prefer-stateless-function': ['error', { ignorePureComponents: true }],
 
+    // AirBnB overrides default set of options, but those overrides are outdated. Default good enough for us.
+    'react/sort-comp': ['error', {}],
+
     // Theoretically, we should turn this on so we remind ourselves not to depend on webpack too much, but oh well
     'import/no-webpack-loader-syntax': 'off',
 
