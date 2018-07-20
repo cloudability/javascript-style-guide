@@ -26,6 +26,9 @@
     "airbnb",
     "es6",
     "es2015",
+    "es2016",
+    "es2017",
+    "es2018",
     "react",
     "jsx"
   ],
@@ -34,6 +37,9 @@
     "url": "https://github.com/cloudability/javascript-style-guide/issues"
   },
   "homepage": "https://github.com/cloudability/javascript-style-guide",
+  "devDependencies": {
+    "markdownlint-cli": "^0.10.0"
+  },
   "dependencies": {
     "babel-eslint": "8.2.3",
     "eslint": "4.19.1",

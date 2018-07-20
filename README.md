@@ -363,8 +363,9 @@ Other Style Guides
     const itemsCopy = [...items];
     ```
 
-  <a name="arrays--from"></a><a name="4.4"></a>
-  - [4.4](#arrays--from) To convert an array-like object to an array, use spreads `...` instead of [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+  <a name="arrays--from"></a>
+  <a name="arrays--from-iterable"></a><a name="4.4"></a>
+  - [4.4](#arrays--from-iterable) To convert an iterable object to an array, use spreads `...` instead of [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
@@ -376,8 +377,21 @@ Other Style Guides
     const nodes = [...foo];
     ```
 
+  <a name="arrays--from-array-like"></a>
+  - [4.5](#arrays--from-array-like) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) for converting an array-like object to an array.
+
+    ```javascript
+    const arrLike = { 0: 'foo', 1: 'bar', 2: 'baz', length: 3 };
+
+    // bad
+    const arr = Array.prototype.slice.call(arrLike);
+
+    // good
+    const arr = Array.from(arrLike);
+    ```
+
   <a name="arrays--mapping"></a>
-  - [4.5](#arrays--mapping) Use [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
+  - [4.6](#arrays--mapping) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
 
     ```javascript
     // bad
@@ -388,7 +402,7 @@ Other Style Guides
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.6](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
     // good
@@ -435,7 +449,7 @@ Other Style Guides
     ```
 
   <a name="arrays--bracket-newline"></a>
-  - [4.7](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
+  - [4.8](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
 
     ```javascript
     // bad
@@ -1736,6 +1750,46 @@ Other Style Guides
 
     // good
     const foo = 'superLongLongLongLongLongLongLongLongString';
+    ```
+
+<a name="variables--no-unused-vars"></a>
+  - [13.8](#variables--no-unused-vars) Disallow unused variables. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
+
+    > Why? Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.
+
+    ```javascript
+    // bad
+
+    var some_unused_var = 42;
+
+    // Write-only variables are not considered as used.
+    var y = 10;
+    y = 5;
+
+    // A read for a modification of itself is not considered as used.
+    var z = 0;
+    z = z + 1;
+
+    // Unused function arguments.
+    function getX(x, y) {
+        return x;
+    }
+
+    // good
+
+    function getXPlusY(x, y) {
+      return x + y;
+    }
+
+    var x = 1;
+    var y = a + 2;
+
+    alert(getXPlusY(x, y));
+
+    // 'type' is ignored even if unused because it has a rest property sibling.
+    // This is a form of extracting an object that omits the specified keys.
+    var { type, ...coords } = data;
+    // 'coords' is now the 'data' object without its 'type' property.
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -3669,12 +3723,14 @@ Other Style Guides
   - **Bonhomme**: [bonhommeparis/javascript](https://github.com/bonhommeparis/javascript)
   - **Brainshark**: [brainshark/javascript](https://github.com/brainshark/javascript)
   - **CaseNine**: [CaseNine/javascript](https://github.com/CaseNine/javascript)
+  - **Cerner**: [Cerner](https://github.com/cerner/)
   - **Chartboost**: [ChartBoost/javascript-style-guide](https://github.com/ChartBoost/javascript-style-guide)
   - **ComparaOnline**: [comparaonline/javascript](https://github.com/comparaonline/javascript-style-guide)
   - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
   - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
   - **DoSomething**: [DoSomething/eslint-config](https://github.com/DoSomething/eslint-config)
   - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
+  - **Drupal**: [www.drupal.org](https://www.drupal.org/project/drupal)
   - **Ecosia**: [ecosia/javascript](https://github.com/ecosia/javascript)
   - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
   - **Evolution Gaming**: [evolution-gaming/javascript](https://github.com/evolution-gaming/javascript)
@@ -3717,6 +3773,7 @@ Other Style Guides
   - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
   - **OutBoxSoft**: [OutBoxSoft/javascript](https://github.com/OutBoxSoft/javascript)
   - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
+  - **Qotto**: [Qotto/javascript-style-guide](https://github.com/Qotto/javascript-style-guide)
   - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
   - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
   - **React**: [facebook.github.io/react/contributing/how-to-contribute.html#style-guide](https://facebook.github.io/react/contributing/how-to-contribute.html#style-guide)
