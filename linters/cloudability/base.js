@@ -4,10 +4,7 @@ module.exports = {
     '../../packages/eslint-config-airbnb',
   ].map(require.resolve),
   parserOptions: {
-    ecmaVersion : 2017,
-    ecmaFeatures: {
-      impliedStrict: false,
-    },
+    ecmaVersion: 2018,
   },
   globals: {
     // testing-related
