@@ -37,16 +37,13 @@
     "url": "https://github.com/cloudability/javascript-style-guide/issues"
   },
   "homepage": "https://github.com/cloudability/javascript-style-guide",
-  "devDependencies": {
-    "markdownlint-cli": "^0.10.0"
-  },
   "dependencies": {
-    "babel-eslint": "8.2.3",
-    "eslint": "4.19.1",
-    "eslint-import-resolver-webpack": "0.10.0",
-    "eslint-plugin-import": "2.12.0",
-    "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-react": "7.8.2",
+    "babel-eslint": "8.2.6",
+    "eslint": "5.1.0",
+    "eslint-import-resolver-webpack": "0.10.1",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-jsx-a11y": "6.1.1",
+    "eslint-plugin-react": "7.10.0",
     "eslint-restricted-globals": "0.1.1"
   }
 }
