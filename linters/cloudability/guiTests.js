@@ -1,14 +1,16 @@
 module.exports = {
+
+  plugins: [
+    'cypress',
+  ],
+
   globals: {
     renderTools: false,
 
-    cy     : false,
-    Cypress: false,
-
     describe: false,
-    expect  : false,
     it      : false,
   },
+
   extends: [
     './gui',
   ].map(require.resolve),
