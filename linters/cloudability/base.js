@@ -6,12 +6,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
   },
-  globals: {
-    // testing-related
-    describe: false,
-    expect  : false,
-    it      : false,
-  },
 
   rules: {
 
