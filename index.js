@@ -1,8 +1,8 @@
 /* eslint-disable global-require */
 
-const guiConfig = require('./linters/cloudability/gui');
-const guiTestsConfig = require('./linters/cloudability/guiTests');
-const serviceConfig = require('./linters/cloudability/service');
+const guiConfig = require('./configs/gui');
+const guiTestsConfig = require('./configs/guiTests');
+const serviceConfig = require('./configs/service');
 
 const customCloudyRules = {
   /* foo: require('./foo') */
