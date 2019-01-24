@@ -7,6 +7,10 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+
+      // Temporarily allow "@dec() export {{default}} class A {}"
+      // TODO - take off band aid and change codebase to "export {{default}} @dec class A{}" as per JS spec
+      legacyDecorators: true,
     },
   },
   settings: {

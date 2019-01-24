@@ -4,16 +4,7 @@ module.exports = {
     '../../packages/eslint-config-airbnb',
   ].map(require.resolve),
   parserOptions: {
-    ecmaVersion : 2017,
-    ecmaFeatures: {
-      impliedStrict: false,
-    },
-  },
-  globals: {
-    // testing-related
-    describe: false,
-    expect  : false,
-    it      : false,
+    ecmaVersion: 2018,
   },
 
   rules: {
@@ -32,9 +23,6 @@ module.exports = {
 
     // We want to explicitly define boolean values within jsx
     'react/jsx-boolean-value': ['error', 'always'],
-
-    // Can cause weird spacing. Revisit once https://github.com/yannickcr/eslint-plugin-react/issues/1775 is fixed
-    'react/jsx-one-expression-per-line': 'off',
 
     // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
     'react/no-danger': 'error',
