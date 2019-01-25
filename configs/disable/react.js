@@ -1,4 +1,4 @@
-const reactRules = require('../../../packages/eslint-config-airbnb/rules/react');
+const reactRules = require('eslint-config-airbnb/rules/react');
 
 module.exports = {
   parserOptions: {

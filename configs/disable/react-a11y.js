@@ -1,4 +1,4 @@
-const a11yRules = require('../../../packages/eslint-config-airbnb/rules/react-a11y');
+const a11yRules = require('eslint-config-airbnb/rules/react-a11y');
 
 module.exports = {
   rules: Object.keys(a11yRules.rules).reduce((acc, key) => {
