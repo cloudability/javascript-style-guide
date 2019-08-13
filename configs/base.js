@@ -18,11 +18,14 @@ module.exports = {
     // Not worth the effort of refactoring all `this.props` usage
     'react/destructuring-assignment': 'off',
 
+    // We want to explicitly define boolean values within jsx
+    'react/jsx-boolean-value': ['error', 'always'],
+
     // Forcing spacing with braces in jsx
     'react/jsx-curly-spacing': ['error', 'always'],
 
-    // We want to explicitly define boolean values within jsx
-    'react/jsx-boolean-value': ['error', 'always'],
+    // It makes writing wrapper components more frustrating
+    'react/jsx-props-no-spreading': 'off',
 
     // AirBnB defaults to useless warnings. Devs should just disable this rule line-by-line as needed
     'react/no-danger': 'error',
@@ -48,6 +51,12 @@ module.exports = {
     // AirBnB overrides default set of options, but those overrides are outdated. Default good enough for us.
     'react/sort-comp': ['error', {}],
 
+    // Let dev decide whether to include state in constructor
+    'react/state-in-constructor': 'off',
+
+    // AirBnB indicated they will move to this rule in future so use it now
+    'react/static-property-placement': ['error', 'static public field'],
+
     // Theoretically, we should turn this on so we remind ourselves not to depend on webpack too much, but oh well
     'import/no-webpack-loader-syntax': 'off',
 
@@ -61,16 +70,12 @@ module.exports = {
      *
      */
 
-    'callback-return': 'error',
+    // Allow simple arrow fns in format of F = foo => bar
+    'arrow-parens': ['error', 'as-needed',
+      { 'requireForBlockBody': true }
+    ],
 
-    // Force trailing commas when code is spread over multiple line for cleaner git changes
-    'comma-dangle': ['error', {
-      arrays   : 'always-multiline',
-      objects  : 'always-multiline',
-      imports  : 'always-multiline',
-      exports  : 'always-multiline',
-      functions: 'always-multiline',
-    }],
+    'callback-return': 'error',
 
     // The consistency checks do not match our early-returns + normal callback coding style
     'consistent-return': 'off',
@@ -220,8 +225,8 @@ module.exports = {
 
       ignoreRegExpLiterals: true,
 
-      // require / import statements can be as long as they need to be
-      ignorePattern: ".*(\\(|\\s)+(require|import)\\(\\'",
+      // require / async import statements can be as long as they need to be
+      ignorePattern: ".*(\\(|\\s)+(require|import)\\(",
     }],
   },
 };
