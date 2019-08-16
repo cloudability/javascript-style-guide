@@ -50,6 +50,9 @@ module.exports = {
     // GUI team has decided against dangling commas
     'comma-dangle': ['error', 'never'],
 
+    // The rule require changes to large chunk of code and does not aid readability much
+    'react/jsx-one-expression-per-line': 'off',
+
     // With modules, `use-strict` is superfluous but we have a mixed building system
     strict: 'off',
 
