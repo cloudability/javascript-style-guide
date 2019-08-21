@@ -1,5 +1,5 @@
 module.exports = {
   extends: [
-    './linters/cloudability/base',
+    './configs/base',
   ].map(require.resolve)
 };
