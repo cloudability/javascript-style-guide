@@ -1,5 +1,4 @@
 module.exports = {
-  plugins: ['cloudability'],
   extends: [
     './base',
     './disable/react-a11y',
@@ -50,11 +49,18 @@ module.exports = {
     // GUI team has decided against dangling commas
     'comma-dangle': ['error', 'never'],
 
-    // The rule require changes to large chunk of code and does not aid readability much
-    'react/jsx-one-expression-per-line': 'off',
+    // A very large chunk of our code base puts operator at end
+    'operator-linebreak': ['error', 'after'],
 
-    // With modules, `use-strict` is superfluous but we have a mixed building system
-    strict: 'off',
+    'spaced-comment': ['error', 'always', {
+      line: {
+        markers: ['/', 'global'],
+      },
+      block: {
+        exceptions: ['*'],
+        balanced  : true,
+      },
+    }],
 
   },
 };

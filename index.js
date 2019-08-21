@@ -1,9 +1,5 @@
 /* eslint-disable global-require */
 
-const guiConfig = require('./configs/gui');
-const guiTestsConfig = require('./configs/guiTests');
-const serviceConfig = require('./configs/service');
-
 const customCloudyRules = {
   /* foo: require('./foo') */
 };
@@ -11,10 +7,11 @@ const customCloudyRules = {
 module.exports = {
   rules  : customCloudyRules,
   configs: {
-    gui: guiConfig,
+    gui     : require('./configs/gui'),
+    guiTests: require('./configs/guiTests'),
 
-    guiTests: guiTestsConfig,
+    service: require('./configs/service'),
 
-    service: serviceConfig,
+    typescript: require('./configs/typescript'),
   },
 };

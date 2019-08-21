@@ -2,9 +2,16 @@ module.exports = {
   parser : 'babel-eslint',
   extends: [
     'airbnb',
+    'airbnb/hooks',
   ],
   parserOptions: {
     ecmaVersion: 2018,
+  },
+
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 
   rules: {
@@ -23,6 +30,9 @@ module.exports = {
 
     // Forcing spacing with braces in jsx
     'react/jsx-curly-spacing': ['error', 'always'],
+
+    // The rule require changes to large chunk of code and does not aid readability much
+    'react/jsx-one-expression-per-line': 'off',
 
     // It makes writing wrapper components more frustrating
     'react/jsx-props-no-spreading': 'off',
@@ -72,10 +82,8 @@ module.exports = {
 
     // Allow simple arrow fns in format of F = foo => bar
     'arrow-parens': ['error', 'as-needed',
-      { 'requireForBlockBody': true }
+      { requireForBlockBody: true },
     ],
-
-    'callback-return': 'error',
 
     // The consistency checks do not match our early-returns + normal callback coding style
     'consistent-return': 'off',
@@ -88,11 +96,6 @@ module.exports = {
 
     // Devs can choose most readable style as long as consistent for every arg
     'function-paren-newline': ['error', 'consistent'],
-
-    // Enforces styling similar to how MDN writes their generators
-    'generator-star-spacing': ['error', { before: false, after: true }],
-
-    'handle-callback-err': ['error', '^(err|.*(e|E)rror)'],
 
     // Rule should be identical to AirBnB except for VariableDeclarator & MemberExpression
     indent: ['error', 2, {
@@ -118,16 +121,6 @@ module.exports = {
         multiLine : { beforeColon: false, afterColon: true, align: 'colon' },
       },
     ],
-
-    'lines-around-comment': ['error', {
-      beforeBlockComment: true,
-      beforeLineComment : true,
-      allowBlockStart   : true,
-      allowObjectStart  : true,
-    }],
-
-    // Devs can choose best style here
-    'multiline-ternary': 'off',
 
     // Should not leak stuff to clientside
     'no-console': 'error',
@@ -190,43 +183,19 @@ module.exports = {
 
     // We do not like space before the first parenthesis in function decl
     'space-before-function-paren': ['error', 'never'],
-    'spaced-comment'             : ['error', 'always', {
-      line: {
-        markers: ['/', 'global'],
-      },
-      block: {
-        exceptions: ['*'],
-        balanced  : true,
-      },
-    }],
 
-    // Always specify `use-strict` at top-level
-    strict: ['error', 'global'],
-
-    /*
-     *
-     * Taken & adapted from Cloudability GUI's eslint
-     *
-     */
-    'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
-
-    // A very large chunk of our code base puts operator at end
-    'operator-linebreak': ['error', 'after'],
-
-    // Stuff taken & adapted from Datahero's unfinished eslint
-    'no-alert'             : 'error',
-    'no-constant-condition': 'error',
-    'no-use-before-define' : ['error', 'nofunc'],
-    'max-len'              : ['error', {
+    'max-len': ['error', {
       code    : 120,
       tabWidth: 2,
 
-      ignoreComments: true,
-
-      ignoreRegExpLiterals: true,
+      ignoreUrls            : true,
+      ignoreComments        : true,
+      ignoreRegExpLiterals  : true,
+      ignoreStrings         : true,
+      ignoreTemplateLiterals: true,
 
       // require / async import statements can be as long as they need to be
-      ignorePattern: ".*(\\(|\\s)+(require|import)\\(",
+      ignorePattern: '.*(\\(|\\s)+(require|import)\\(',
     }],
   },
 };
