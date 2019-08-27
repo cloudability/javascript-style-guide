@@ -1,3 +1,12 @@
+try {
+  require('typescript'); // eslint-disable-line global-require, import/no-unresolved
+} catch {
+  module.exports = {
+    extends: [require.resolve('./base')],
+  };
+  return;
+}
+
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
 module.exports = {
