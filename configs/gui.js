@@ -52,15 +52,5 @@ module.exports = {
     // A very large chunk of our code base puts operator at end
     'operator-linebreak': ['error', 'after'],
 
-    'spaced-comment': ['error', 'always', {
-      line: {
-        markers: ['/', 'global'],
-      },
-      block: {
-        exceptions: ['*'],
-        balanced  : true,
-      },
-    }],
-
   },
 };

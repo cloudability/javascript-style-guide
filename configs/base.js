@@ -184,6 +184,39 @@ module.exports = {
     // We do not like space before the first parenthesis in function decl
     'space-before-function-paren': ['error', 'never'],
 
+    // Add extra exceptions/markers
+    'spaced-comment': [
+      'error',
+      'always',
+      {
+        line: {
+          exceptions: [
+            '-',
+            '+',
+          ],
+          markers: [
+            '=',
+            '!',
+            '/',
+            'global',
+          ],
+        },
+        block: {
+          exceptions: [
+            '-',
+            '+',
+          ],
+          markers: [
+            '=',
+            '!',
+            ':',
+            '::',
+          ],
+          balanced: true,
+        },
+      },
+    ],
+
     'max-len': ['error', {
       code    : 120,
       tabWidth: 2,
