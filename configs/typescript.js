@@ -45,6 +45,9 @@ module.exports = {
         // Also allow react in .tsx files
         'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
 
+        // Typescript files have typing information already
+        'react/prop-types': 'off',
+
         // TypeScript's `noFallthroughCasesInSwitch` option is more robust
         'default-case': 'off',
 
