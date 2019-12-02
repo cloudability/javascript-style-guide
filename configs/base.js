@@ -195,7 +195,7 @@ module.exports = {
       ignoreTemplateLiterals: true,
 
       // require / async import statements can be as long as they need to be
-      ignorePattern: '.*(\\(|\\s)+(require|import)\\(',
+      ignorePattern: '.*(\\(|\\s)+(require|import)\\)',
     }],
   },
 };
