@@ -1,14 +1,8 @@
 module.exports = {
-
-  plugins: [
-    'cypress',
-  ],
-
   globals: {
     renderTools: false,
-
-    describe: false,
-    it      : false,
+    describe   : false,
+    it         : false,
   },
 
   extends: [
@@ -17,18 +11,13 @@ module.exports = {
 
   env: {
     browser: false,
-
-    mocha: true,
-    jest : true,
-
-    'cypress/globals': true,
+    mocha  : true,
+    jest   : true,
   },
 
   rules: {
     'import/no-extraneous-dependencies': 'off',
-
-    'react/jsx-filename-extension': 'off',
-
-    'global-require': 'off',
+    'react/jsx-filename-extension'     : 'off',
+    'global-require'                   : 'off',
   },
 };
