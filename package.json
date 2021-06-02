@@ -39,7 +39,7 @@
   "homepage": "https://github.com/cloudability/javascript-style-guide",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "2.0.0",
-    "@typescript-eslint/parser": "2.0.0",
+    "@typescript-eslint/parser": "2.34.0",
     "babel-eslint": "10.0.2",
     "eslint": "6.2.1",
     "eslint-config-airbnb": "18.0.1",
